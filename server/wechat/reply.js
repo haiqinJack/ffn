@@ -13,6 +13,6 @@ export default async (ctx, next) => {
 			ctx.body = `${message.Latitude}:${message.Longitude}`
 		}
 	}else{
-		ctx.body = '你可以尝试联系客服'
+		ctx.body = '你想要联系客服?'
 	}
 }
