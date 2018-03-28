@@ -4,6 +4,7 @@ import { Nuxt, Builder } from 'nuxt'
 // 列和数据的变换传递变得更容易
 import R from 'ramda'
 import { resolve } from 'path'
+import xml from 'koa-xml'
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
@@ -52,7 +53,7 @@ class Server {
         })
       })
     })
-
+    
     this.app.listen(port, host)
     console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console    
   }
