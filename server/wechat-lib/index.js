@@ -2,7 +2,10 @@ import request from 'request-promise'
 
 const base = 'https://api.weixin.qq.com/cgi-bin/'
 const api = {
-	accessToken: base + 'token?grant_type=client_credential'
+	accessToken: base + 'token?grant_type=client_credential',
+	user: {
+		fetchUserList: base + 'user/get?'
+	}
 }
 
 export default class Wechat {
@@ -12,7 +15,15 @@ export default class Wechat {
 		this.appSecret = opts.appSecret
 		this.getAccessToken = opts.getAccessToken
 		this.saveAccessToken = opts.saveAccessToken
-		this.fetchAccessToken()
+		
+	}
+
+	async handle(operation, ...args) {
+		const tokenData = await this.fetchAccessToken()
+		const options = this[operation](tokenData.access_token, ...args)
+		const data = await request(options)
+
+		return data
 	}
 
 	async request(options) {
@@ -29,12 +40,10 @@ export default class Wechat {
 
 	async fetchAccessToken() {
 		let data = await this.getAccessToken()
-
 		if(!this.isValidAccessToken(data)){
 			data =  await this.updateAccessToken()
+			await this.saveAccessToken(data)
 		}
-
-		await this.saveAccessToken(data)
 
 		return data
 	}
@@ -58,11 +67,16 @@ export default class Wechat {
 		const expiresIn = data.expires_in
 		const now = (new Date().getTime())
 
-		if(now < expires_in){
+		if(now < expiresIn){
 			return true
 		}else{
 			return false
 		}
 
+	}
+
+	fetchUserList(token, openid) {
+		const url = `${api.user.fetchUserList}access_token=${token}&next_openid=${openid || ''}`
+		return {url}
 	}
 }
