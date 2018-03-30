@@ -39,6 +39,7 @@ TokenSchema.statics = {
 		let token  = await this.findOne({name: 'access_token'}).exec()
 
 		if(token){
+			token.access_token = data.access_token
 			token.expires_in = data.expires_in
 		}else{
 			token = new Token({
