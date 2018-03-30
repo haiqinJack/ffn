@@ -14,7 +14,14 @@ export const router = app => {
 		let client = mp.getWechat()
 		const data = await client.handle('fetchUserList')
 
-		console.log(data)
+		ctx.body = data
+	})
+
+	router.get('/tag', async (ctx, next) => {
+		let mp = require('../wechat')
+		let client = mp.getWechat()
+		const data = await client.handle('fetchUserInfo', 'o5Yi9wOfXWopOcMYiujWBZmwBH0Q')
+		ctx.body = data
 	})
 	app.use(router.routes()).use(router.allowedMethods());
 }
