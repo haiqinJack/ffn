@@ -1,8 +1,10 @@
 import request from 'request-promise'
+import { signature } from './util'
 
 const base = 'https://api.weixin.qq.com/cgi-bin/'
 const api = {
 	accessToken: base + 'token?grant_type=client_credential',
+	ticket: base + 'ticket/getticket?',
 	user: {
 		info: base + 'user/info?',
 		batchInfo: base + 'user/info/batchget?',
@@ -28,6 +30,12 @@ export default class Wechat {
 		this.appSecret = opts.appSecret
 		this.getAccessToken = opts.getAccessToken
 		this.saveAccessToken = opts.saveAccessToken	
+		this.getTicket = opts.getTicket
+		this.saveTicket = opts.saveTicket
+	}
+
+	signature(ticket, url) {
+		return signature(ticket, url)
 	}
 
 	getUserTagList(token, openid) {
@@ -151,7 +159,7 @@ export default class Wechat {
 
 	async fetchAccessToken() {
 		let data = await this.getAccessToken()
-		if(!this.isValidAccessToken(data)){
+		if(!this.isValidToken(data, 'access_token')){
 			data =  await this.updateAccessToken()
 			await this.saveAccessToken(data)
 		}
@@ -164,14 +172,35 @@ export default class Wechat {
 		
 		const data = await this.request({url: url})
 		const now = (new Date().getTime())
-		const expiresIn = now + (data.expires_in - 20) * 1000
+		const expiresIn = now + (data.expires_in - 60) * 1000
 		data.expires_in = expiresIn
 
 		return data
 	}
 
-	isValidAccessToken(data) {
-		if(!data || !data.access_token || !data.expires_in){
+	async fetchTicket() {
+		let data = await this.getTicket()
+		if(!this.isValidToken(data, 'ticket')){
+			const tokenData = await this.fetchAccessToken()
+			data =  await this.updateTicket(tokenData.access_token)
+			await this.saveTicket(data)
+		}
+
+		return data
+	}
+
+	async updateTicket(token) {
+		const url = `${api.ticket}access_token=${token}&type=jsapi`
+		const data = await this.request({url: url})
+		const now = (new Date().getTime())
+		const expiresIn = now + (data.expires_in - 60) * 1000
+		data.expires_in = expiresIn
+
+		return data		
+	}
+
+	isValidToken(data, name) {
+		if(!data || !data[name] || !data.expires_in){
 			return false
 		}
 

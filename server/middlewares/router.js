@@ -2,6 +2,7 @@ import Router from 'koa-router'
 import config from '../config'
 import reply from '../wechat/reply'
 import wechatMiddle from '../wechat-lib/middleware'
+import { signature } from '../controllers/wechat'
 
 export const router = app => {
 	const router = new Router();
@@ -9,13 +10,7 @@ export const router = app => {
 	router.all('/wechat', wechatMiddle(config.wechat, reply)
 	);
 
-	router.get('/user', async (ctx, next) => {
-		let mp = require('../wechat')
-		let client = mp.getWechat()
-		const data = await client.handle('fetchUserList')
-
-		ctx.body = data
-	})
+	router.get('/user', signature)
 
 	router.get('/tag', async (ctx, next) => {
 		let mp = require('../wechat')
