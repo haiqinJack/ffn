@@ -2,7 +2,7 @@ import Router from 'koa-router'
 import config from '../config'
 import reply from '../wechat/reply'
 import wechatMiddle from '../wechat-lib/middleware'
-import { signature } from '../controllers/wechat'
+import { signature, redirect, oauth } from '../controllers/wechat'
 
 export const router = app => {
 	const router = new Router();
@@ -11,7 +11,8 @@ export const router = app => {
 	);
 
 	router.get('/user', signature)
-
+	router.get('/wechat-oauth', oauth)
+	router.get('/wechat-redirect', redirect)
 	router.get('/tag', async (ctx, next) => {
 		let mp = require('../wechat')
 		let client = mp.getWechat()

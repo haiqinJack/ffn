@@ -1,7 +1,11 @@
 import {
-	getSignatureAsync
+	getSignatureAsync,
+	getAuthorizeURL,
+	getUserInfoByCode
 } from './wechat'
 
 export {
-	getSignatureAsync
+	getSignatureAsync,
+	getAuthorizeURL,
+	getUserInfoByCode
 }
