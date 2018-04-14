@@ -9,8 +9,7 @@ import { signature, redirect, oauth } from '../controllers/wechat'
 export class WechatController{
 	@get('/wechat')
 	async wechatHear(ctx, next) {
-		const middle = wechatMiddle(config.wechat, reply)
-		await middle(ctx, next)
+		await wechatMiddle(config.wechat, reply)(ctx, next)
 	}
 
 	@post('/wechat')

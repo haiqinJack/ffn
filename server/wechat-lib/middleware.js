@@ -12,7 +12,6 @@ export default function(opts, reply) {
 			timestamp,
 			echostr
 		} = ctx.query
-
 		const str = [token, timestamp, nonce].sort().join('')
 		const sha = sha1(str)
 
