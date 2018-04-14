@@ -33,23 +33,3 @@ export class WechatController{
 		await oauth(ctx, next)
 	}
 }
-
-
-// export const router = app => {
-// 	const router = new Router();
-
-// 	router.all('/wechat', wechatMiddle(config.wechat, reply)
-// 	);
-
-// 	router.get('/user', signature)
-// 	router.get('/wechat-oauth', oauth)
-// 	router.get('/wechat-redirect', redirect)
-// 	router.get('/tag', async (ctx, next) => {
-// 		let mp = require('../wechat')
-// 		let client = mp.getWechat()
-// 		const data = await client.handle('fetchUserInfo', 'o5Yi9wOfXWopOcMYiujWBZmwBH0Q')
-// 		ctx.body = data
-// 	})
-// 	app.use(router.routes()).use(router.allowedMethods());
-// }
- 
