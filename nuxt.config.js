@@ -19,7 +19,7 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~assets/css/main.css'],
+
   /*
   ** Customize the progress-bar color
   */
@@ -41,5 +41,6 @@ module.exports = {
     //     })
     //   }
     // }
-  }
+  },
+  plugins: ['~plugins/plugin-vant']
 }
