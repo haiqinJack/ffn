@@ -7,11 +7,11 @@
       </div>
       <div class="card_content">
         <div class="card_row">
-          <div v-if="isDef(num)" class="card_num">
-            <div class="btn" @click="onDecrease">-</div>
-            <div class="numInput">{{ num }}</div>
-            <div class="btn" @click="onIncrease">+</div>  
-          </div>
+          <van-stepper 
+            :default-value="num" 
+            @plus="onIncrease"
+            @minus="onDecrease"
+          />
         </div>
         <div class="card_row">
           <div v-if="desc" class="desc">{{ desc }}</div>
@@ -28,16 +28,18 @@
   </div>
 </template>
 <script>
-import { Button } from 'vant';
+import { Button, Stepper } from 'vant';
 
 export default {
   components: {
-    Button
+    Button,
+    Stepper
   },
   data() {
     return {
       checked: false,
-      checkedGoods: []
+      checkedGoods: [],
+
     }
   },
   props: {
@@ -127,13 +129,6 @@ export default {
   display: -ms-flexbox;
   display: flex;  
 }
-.card_num {
-  display: flex;
-  margin: 10px 20px;
-}
-.card_num div{
-  background-color: #fff; 
-}
 .card_price {
   color: #f44;
 }
@@ -142,21 +137,5 @@ export default {
 }
 .card_footer button {
   height: 100%;
-}
-.btn {
-  width: 34px;
-  height: 28px;
-  text-align: center;
-  border: 2px solid #666;
-}
-.numInput {
-  width: 44px;
-  text-align: center;
-  border-style: solid; 
-  border-width: 2px 0;
-  border-color: #666;
-}
-.checkbox_icon {
-display: flex;
 }
 </style>
