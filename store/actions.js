@@ -30,5 +30,9 @@ export default {
     commit('SET_SKUBOX', {goodsId: goodsId,sku:res.data.data.sku})
 
     return res
-  }    
+  },
+  async fetchQiniuToken() {
+    const res = await Services.fetchQiniuToken()
+    return res.data
+  }      
 }

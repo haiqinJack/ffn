@@ -22,6 +22,9 @@ class Services {
 	fetchSkuByGoodsId(goodsId) {
     return axios.get(`${url}/goods/sku/${goodsId}`)
 	}
+	fetchQiniuToken() {
+		return axios.get(`${baseUrl}/qiniu`)
+	}
 }
 
 export default new Services()

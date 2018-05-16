@@ -42,5 +42,5 @@ module.exports = {
     //   }
     // }
   },
-  plugins: ['~plugins/plugin-vant']
+  plugins: ['~plugins/vant','~plugins/element-ui.js']
 }

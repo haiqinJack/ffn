@@ -5,6 +5,7 @@ import getters from './getters'
 
 const createStore = () => new Vuex.Store({
   state: {
+    imageCDN: 'http://p8p8yzlxl.bkt.clouddn.com/',
   	user: {
   		id: 1
   	},
