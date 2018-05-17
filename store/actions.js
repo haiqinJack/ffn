@@ -34,5 +34,9 @@ export default {
   async fetchQiniuToken() {
     const res = await Services.fetchQiniuToken()
     return res.data
-  }      
+  },
+  async saveGoods({},goods) {
+    const res = await Services.saveGoods(goods)
+    return res.data
+  }     
 }

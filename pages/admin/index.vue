@@ -23,6 +23,7 @@
             <el-upload
               action="http://upload-z2.qiniu.com/"
               list-type="picture-card"
+              :on-preview="handlePreview"
               :before-upload="beforeAvatarUpload"
               :on-remove="handleSwipeImgRemove"
               :on-success="handelSwipeImgSuccess"
@@ -47,6 +48,7 @@
               action="http://upload-z2.qiniu.com/"
               list-type="picture-card"
               :show-file-list="false"
+              :on-preview="handlePreview"
               :before-upload="beforeAvatarUpload"
               :on-success="handelPictureSuccess"
               :on-remove="handlePictureRemove"
@@ -398,7 +400,7 @@ export default {
     }
   },
   methods: {
-    onSave() {     
+    async onSave() {     
       if(!this.form.title) {
         this.$message.error('请填写标题');
         return
@@ -433,7 +435,7 @@ export default {
         price: (this.formInline.price || this.price || this.skus.list[0].price),
         sku: this.skus
       }
-      console.log(goods,'goods')
+      const res = await this.$store.dispatch('saveGoods', goods)
     },
     onSubmit() {
       let formInline = this.formInline
