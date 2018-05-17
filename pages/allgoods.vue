@@ -3,13 +3,15 @@
 		<div class="custom-title-new">
 			<h2 class="title-new">全部商品</h2>
 		</div>
+
 		<card v-for="(item) in products"
 			:key="item.id"
 			:id="item.id"
 			:picture="item.picture"
 			:title="item.title"
 			:price="(item.price / 100).toFixed(2)"
-			@click="showCart"
+			@on-sku="showCart"
+			@to-shoping="goShoping"
 		/>
 
     <van-sku v-if="showBase"
@@ -69,6 +71,9 @@ export default {
 		onAddCart(data) {
 			console.log(data)
 			console.log('添加到购物车')
+		},
+		goShoping(id) {
+			this.$router.push({ path: '/shoping', query: { id: id } })
 		}
 	},
 	computed: {

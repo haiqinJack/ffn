@@ -17,8 +17,8 @@ export default {
   },
   async fetchGoods({ commit }, goodsId) {
     const res = await Services.fetchGoods(goodsId)
-
-    commit('SET_GOODS', res.data.data.goods)
+    
+    commit('SET_GOODS', res.data.data)
   },
   async fetchAllGoods({ state }) {
     const res = await Services.fetchAllGoods()

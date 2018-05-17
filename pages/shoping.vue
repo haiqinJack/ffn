@@ -178,7 +178,7 @@ export default {
   },
   beforeCreate() {
     let goodId = this.$route.query.id
-    this.$store.dispatch('fetchGoods', goodId=1)
+    this.$store.dispatch('fetchGoods', goodId)
   }
 };
 

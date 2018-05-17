@@ -5,14 +5,8 @@ const GoodsSchema = new Schema({
 	id: Number,
 	title: String,// 标题
 	expressPrice: Number,// 运费,
-	price: Number, // 单价
+	price: Number, // 单价 (分)
 	picture: String,// 缩略图
-	stock_num: Number,// 商品总库存
-	collection_id: Number,// 无规格商品 skuId 取 collection_id
-	none_sku: {// 是否无规格商品
-		type: Boolean,
-		default: false
-	},
 	thumb: [// 轮播图
 		String
 	],
@@ -47,7 +41,14 @@ const GoodsSchema = new Schema({
 			s3: String,// 规格类目 k_s 为 s3 的对应规格值 id
 			s3Name: String,
 			stock_num: Number// 当前 sku 组合对应的库存
-		}]
+		}],
+		price: Number,// 规格中的默认显示价格（单位元）
+		stock_num: Number,// 商品总库存
+		collection_id: Number,// 无规格商品 skuId 取 collection_id
+		none_sku: {// 是否无规格商品
+			type: Boolean,
+			default: false
+		}
 	},
 	meta: {
 		createAt: {

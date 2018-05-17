@@ -322,7 +322,9 @@
 
 <el-form :inline="true" :model="formInline" class="demo-form-inline mytop">
   <el-form-item label="统一价格">
-    <el-input v-model="formInline.price"></el-input>
+    <el-input v-model="formInline.price">
+      <template slot="prepend">￥</template>
+    </el-input>
   </el-form-item>
   <el-form-item label="统一库存">
     <el-input v-model="formInline.stock"></el-input>
@@ -427,7 +429,7 @@ export default {
       let goods = {
         title: this.form.title,
         info: this.form.info,
-        expressPrice: this.form.expressPrice,
+        expressPrice: (this.form.expressPrice * 100).toFixed(2),
         thumb: this.thumb,
         imageList: this.imageList,
         picture: this.picture,

@@ -1,10 +1,10 @@
 <template>
 	<van-row>
 		<van-col span="8" offset="1" class="info">
-			<img :src="picture" class="img">
+			<img :src="picture" class="img" @click="goShoping">
   	</van-col>
   	<van-col span="13" offset="1" class="info">
-  		<div class="title">
+  		<div class="title" @click="goShoping">
   			{{ title }}
   		</div>
   		<div class="price">
@@ -35,7 +35,10 @@ export default {
   },
   methods: {
     onClick() {
-    	this.$emit('click', this.id)
+    	this.$emit('on-sku', this.id)
+    },
+    goShoping() {
+      this.$emit('to-shoping', this.id)
     }
   }
 }
@@ -47,7 +50,8 @@ export default {
 	width: 118px;
 }
 .title {
-  max-height: 40px;
+  /*max-height: 40px;*/
+  height: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

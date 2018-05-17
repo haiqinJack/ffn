@@ -14,13 +14,13 @@ class Services {
 		return axios.get(`${url}/user/cart/${id}`)
 	}
 	fetchGoods(goodsId) {
-    return axios.get(`${url}/goods/${goodsId}`)
+    return axios.get(`${baseUrl}/goods/${goodsId}`)
 	}
 	fetchAllGoods() {
     return axios.get(`${baseUrl}/goods/all`)
 	}
 	fetchSkuByGoodsId(goodsId) {
-    return axios.get(`${url}/goods/sku/${goodsId}`)
+    return axios.get(`${baseUrl}/goods/sku/${goodsId}`)
 	}
 	fetchQiniuToken() {
 		return axios.get(`${baseUrl}/qiniu`)
