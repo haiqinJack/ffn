@@ -108,7 +108,7 @@ export default {
     },
     onAddCart(data){
       let cart = {}
-      cart.id = data.id
+      cart.id = this.goods.id
       cart.title = this.goods.title
       cart.price = data.selectedSkuComb.price
       cart.number = data.selectedNum
