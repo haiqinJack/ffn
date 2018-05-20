@@ -10,9 +10,6 @@ class Services {
 	getUserInfoByOAuth (url ) {
 		return axios.get(`${baseUrl}/wechat-oauth?url=${url}`)
 	}
-	fetchCartList(id) {
-		return axios.get(`${url}/user/cart/${id}`)
-	}
 	fetchGoods(goodsId) {
     return axios.get(`${baseUrl}/goods/${goodsId}`)
 	}
@@ -26,8 +23,14 @@ class Services {
 		return axios.get(`${baseUrl}/qiniu`)
 	}
 	saveGoods(goods) {
-		return axios.post('api/goods/create', goods)
+		return axios.post(`${baseUrl}/goods/create`, goods)
 	}
+	saveCart(unionid, cart) {
+		return axios.post(`${baseUrl}/cart/create`, {unionid, cart})
+	}
+	fetchCartList(id) {
+		return axios.get(`${baseUrl}/cart/${id}`)
+	}	
 }
 
 export default new Services()

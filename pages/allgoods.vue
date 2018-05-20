@@ -46,13 +46,11 @@ export default {
 		showCart(id) {
 			this.chosenGoodsId = id
 			if(!this.currentSku) {
-				console.log(this.currentSku,'false')
 				const toast = Toast.loading({
 					duration: 0,
 					forbidClick: true
 				})
 				this.$store.dispatch('fetchSkuByGoodsId', id).then((res) => {
-					console.log(res.status === 200)
 					if(res.status === 200) {
 						this.showBase = true
 						Toast.clear()
@@ -70,11 +68,69 @@ export default {
 		},		
 		onAddCart(data) {
 			console.log(data)
+			console.log(this.currentGoods)
 			console.log('添加到购物车')
+      let cart = {}
+      cart.id = this.currentGoods.id
+      cart.title = this.currentGoods.title
+      cart.price = data.selectedSkuComb.price
+      cart.num = data.selectedNum
+      cart.expressPrice = this.currentGoods.expressPrice
+      cart.picture = this.currentGoods.picture
+      cart.desc = this.formarSpec(data.selectedSkuComb)
+      //插入一条数据到后台，更新store数据
+      this.$store.dispatch('saveCart', cart).then(res => {
+        if(res.status === 200 && res.data.success) {
+          this.showBase = false
+          Toast('已成功添加到购物车')
+        }else {
+          Toast('服务器繁忙！')
+        }        
+      })		
 		},
 		goShoping(id) {
 			this.$router.push({ path: '/shoping', query: { id: id } })
-		}
+		},
+    formarSpec(selectedSkuComb) {
+      var spec = ''
+      const s1 = selectedSkuComb.s1
+      const s2 = selectedSkuComb.s2
+      const s3 = selectedSkuComb.s3
+      const tree = this.currentSku.sku.tree
+      for(let i = 0; i < tree.length; i++){
+        if(tree.length >= 1){
+          if(i === 0){
+            let Val = tree[0].v
+            Val.filter(item => {
+              if(item.id === s1) {
+                spec = item.name
+              }
+            })
+          }
+          if (tree.length >= 2) {
+            if(i === 1){
+              let Val = tree[1].v
+              Val.filter(item => {
+                if(item.id === s2) {
+                  spec = spec + ',' + item.name
+                }
+              })
+            }          
+            if (tree.length >= 3) {
+              if(i === 2){
+                let Val = tree[2].v
+                Val.filter(item => {
+                  if(item.id === s3) {
+                    spec = spec + ',' + item.name
+                  }
+                })
+              }          
+            }
+          }
+        }
+      }
+      return spec
+    }		
 	},
 	computed: {
 		showSku() {

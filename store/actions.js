@@ -9,7 +9,7 @@ export default {
   	return Services.getUserInfoByOAuth(url)
   },
   async fetchCartList({ state }) {
-    const res = await Services.fetchCartList(state.user.id) 
+    const res = await Services.fetchCartList(state.user.unionid) 
 
     state.cartList = res.data.data 
     
@@ -35,8 +35,12 @@ export default {
     const res = await Services.fetchQiniuToken()
     return res.data
   },
-  async saveGoods({},goods) {
+  async saveGoods({}, goods) {
     const res = await Services.saveGoods(goods)
     return res.data
+  },
+  async saveCart({ state }, cart) {
+    const res = await Services.saveCart(state.user.unionid, cart)
+    return res
   }     
 }

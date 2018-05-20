@@ -24,8 +24,8 @@
         <van-checkbox
           class="card-goods__item"
           v-for="item in goods"
-          :key="item.id"
-          :name="item.id"
+          :key="item.id + item.desc"
+          :name="item.id + item.desc"
         >
           <van-card
             :title="item.title"
@@ -101,9 +101,9 @@ export default {
     },
     totalPrice() {
       if(!this.edit) {
-        return this.goods.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? (item.price * item.num) : 0), 0);        
+        return this.goods.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id + item.desc) !== -1 ? (item.price * item.num) : 0), 0);        
       }else{
-        return this.goods.reduce((total, item) => total + (this.result.indexOf(item.id) !== -1 ? (item.price * item.num) : 0), 0);        
+        return this.goods.reduce((total, item) => total + (this.result.indexOf(item.id + item.desc) !== -1 ? (item.price * item.num) : 0), 0);        
       }
     },
     ...mapState({
@@ -171,17 +171,19 @@ export default {
           
         });      
     },
-    onIncrease(index) {
+    onIncrease(index, id) {
       let num = this.goods[index].num
       if(num < 10){
         this.goods[index].num++
+        console.log(id,'id')
       }else{
         Toast('就这么几件啦～')
       }
     },
-    onDecrease(index) {
+    onDecrease(index, id) {
       let num = this.goods[index].num
       if(num > 1) {
+        console.log(id,'id')
         this.goods[index].num--
       }
     }

@@ -61,10 +61,10 @@ export default {
       this.$emit('delete',this.id)
     },
     onIncrease() {
-      this.$emit('increase', this.$vnode.key)
+      this.$emit('increase', this.$vnode.key, this.id)
     },
     onDecrease() {
-      this.$emit('decrease', this.$vnode.key)
+      this.$emit('decrease', this.$vnode.key, this.id)
     }
   }
 }

@@ -11,6 +11,11 @@ import{
 	saveGoods
 } from './goods'
 
+import {
+	getCartByUnionid,
+	saveCart
+} from './cart'
+
 export {
 	getGoods,
 	getGoodsOneById,
@@ -18,5 +23,7 @@ export {
 	saveGoods,
 	getSignatureAsync,
 	getAuthorizeURL,
-	getUserInfoByCode
+	getUserInfoByCode,
+	getCartByUnionid,
+	saveCart
 }

@@ -111,13 +111,19 @@ export default {
       cart.id = this.goods.id
       cart.title = this.goods.title
       cart.price = data.selectedSkuComb.price
-      cart.number = data.selectedNum
+      cart.num = data.selectedNum
       cart.expressPrice = this.goods.expressPrice
       cart.picture = this.goods.picture
       cart.desc = this.formarSpec(data.selectedSkuComb)
       //插入一条数据到后台，更新store数据
-      console.log(data)
-      console.log(cart)      
+      this.$store.dispatch('saveCart', cart).then(res => {
+        if(res.status === 200 && res.data.success) {
+          this.showBase = false
+          Toast('已成功添加到购物车')
+        }else {
+          Toast('服务器繁忙！')
+        }        
+      })
     },
     onBuyClicked(data) {
       let cart = {}
