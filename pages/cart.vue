@@ -8,6 +8,7 @@
       <van-checkbox-group v-model="result" @change="onSelect">
       <editcard v-for="(item, index) in goods"
         :key="index"
+        :name="item.id + item.desc"
         :id="item.id"
         :desc="item.desc"
         :num="item.num"
@@ -96,6 +97,7 @@ export default {
   },
   computed: {
     submitBarText() {
+      this.ischecked
       const count = this.checkedGoods.length;
       return this.edit ? '删除' : '结算' + (count ? `(${count})` : '');
     },
@@ -104,6 +106,15 @@ export default {
         return this.goods.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id + item.desc) !== -1 ? (item.price * item.num) : 0), 0);        
       }else{
         return this.goods.reduce((total, item) => total + (this.result.indexOf(item.id + item.desc) !== -1 ? (item.price * item.num) : 0), 0);        
+      }
+    },
+    ischecked() {
+      if(this.checkedGoods.length === this.goods.length || this.result.length === this.goods.length){
+        this.checked = true
+        return true
+      }else {
+        this.checked = false
+        return false
       }
     },
     ...mapState({
@@ -131,7 +142,7 @@ export default {
         let payment = []
         this.goods.forEach((value, index) => {
           this.checkedGoods.forEach((v) => {
-            if(value.id === v){
+            if((value.id + value.desc) === v){
               payment.push(value)
             }
           })
@@ -149,16 +160,18 @@ export default {
       }
     },
     checkedAll(value) {
-      if(!this.edit){
-        value? this.checkedGoods = this.onAll() : this.checkedGoods = []
-      }else{
-        value? this.result = this.onAll() : this.result = []  
+      if(this.ischecked || value) {
+        if(!this.edit){
+          value? this.checkedGoods = this.onAll() : this.checkedGoods = []
+        }else{
+          value? this.result = this.onAll() : this.result = []  
+        }
       }
     },
     onAll() {
       let arr = []
       this.goods.forEach(function(value, index) {
-        arr.push(value.id)
+        arr.push((value.id + value.desc))
       })
       return arr
     },

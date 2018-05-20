@@ -1,7 +1,7 @@
 <template>
   <div> 
     <div class="card">
-      <van-checkbox v-model="checked" class="card_checkd" :name="id"/>
+      <van-checkbox v-model="checked" class="card_checkd" :name="name"/>
       <div class="card_picture">
         <img :src="picture" >
       </div>
@@ -44,6 +44,7 @@ export default {
   },
   props: {
     id: [Number, String],
+    name: [String],
     picture: String,
     desc: String,
     num: [Number, String],
