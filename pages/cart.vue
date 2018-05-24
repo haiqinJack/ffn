@@ -83,6 +83,7 @@ import myedit  from '~/components/edit.vue'
 import editcard from '~/components/edit-card.vue'
 
 export default {
+  middleware: 'wechat-auth',
   data() {
     return {
       edit: false,
@@ -92,6 +93,13 @@ export default {
     };
   },
   components: {
+    [Checkbox.name]: Checkbox,
+    [CheckboxGroup.name]: CheckboxGroup,
+    [Card.name]: Card,
+    [SubmitBar.name]: SubmitBar,
+    [Toast.name]: Toast,
+    [Button.name]: Button,
+    [Dialog.name]: Dialog,
     myedit,
     editcard
   },
@@ -184,19 +192,21 @@ export default {
           
         });      
     },
-    onIncrease(index, id) {
+    onIncrease(index, id, desc) {
       let num = this.goods[index].num
       if(num < 10){
         this.goods[index].num++
-        console.log(id,'id')
+        console.log(id, 'id')
+        console.log(desc, 'desc')
       }else{
         Toast('就这么几件啦～')
       }
     },
-    onDecrease(index, id) {
+    onDecrease(index, id, desc) {
       let num = this.goods[index].num
       if(num > 1) {
         console.log(id,'id')
+        console.log(desc, 'desc')
         this.goods[index].num--
       }
     }

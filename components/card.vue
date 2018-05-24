@@ -17,11 +17,13 @@
 	</van-row>
 </template>
 <script>
-import { Button, Row, Col, Icon } from 'vant';
+import { Row, Col, Icon } from 'vant'
 
 export default {
   components: {
-    Button, Row, Col, Icon
+    [Row.name]: Row, 
+    [Col.name]: Col, 
+    [Icon.name]: Icon
   },
   props: {
     id: [Number, String],

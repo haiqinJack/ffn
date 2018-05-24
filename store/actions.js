@@ -8,6 +8,9 @@ export default {
   getUserInfoByOAuth({ commit }, url) {
   	return Services.getUserInfoByOAuth(url)
   },
+  setUser ({ commit }, user) {
+    commit('SET_USER', user)
+  },
   async fetchCartList({ state }) {
     const res = await Services.fetchCartList(state.user.unionid) 
 

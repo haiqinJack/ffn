@@ -1,4 +1,9 @@
 import axios from 'axios'
+import config from '../server/config'
+
+axios.create({
+	baseUrl: config.SITE_ROOT_URL
+})
 
 const baseUrl = '/api'
 const url = 'http://rap2api.taobao.org/app/mock/10346//api'
@@ -7,8 +12,8 @@ class Services {
 	getWechatSignture (url) {
 		return axios.get(`${baseUrl}/user?url=${url}`)
 	}
-	getUserInfoByOAuth (url ) {
-		return axios.get(`${baseUrl}/wechat-oauth?url=${url}`)
+	getUserInfoByOAuth (url) {
+		return axios.get(`/wechat-oauth?url=${url}`)
 	}
 	fetchGoods(goodsId) {
     return axios.get(`${baseUrl}/goods/${goodsId}`)

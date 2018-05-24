@@ -7,22 +7,28 @@
 				</template>
 			</van-cell>
 		</van-cell-group>
-		<radio-group>
-		  <cell-group>
-		    <cell v-for="(item, index) in lists" :key="item.id">
-		      <radio @click="$emit('select', item, index)">
+		<van-radio-group v-model="radio">
+		  <van-cell-group>
+		    <van-cell v-for="(item, index) in lists" :key="item.name">
+		      <van-radio @click="$emit('select', item, index)" name="0">
 		        <div>{{ item.name }}，¥{{ (item.price / 100).toFixed(2) }}</div>
 		        <div class="address">{{ item.desc }}</div>
-		      </radio>
-		    </cell>
-		  </cell-group>	
-	  </radio-group>
-  </div>
+		      </van-radio>
+		    </van-cell>
+		  </van-cell-group>	
+	  </van-radio-group>
+	</div>  
 </template>
 <script>
-import { Radio, RadioGroup, CellGroup, Cell, Icon} from 'vant'
+import { RadioGroup, Radio, CellGroup, Cell, Icon} from 'vant'
 
 export default {
+	data() {
+		return {
+			radio: '0'
+		}
+	},
+	name: 'myexpress',
 	props: {
 		lists: {
 			type: Array,
@@ -30,15 +36,15 @@ export default {
 		}
 	},
 	components: {
-		Radio,
-		RadioGroup,
-		Cell,
-		CellGroup,
-		Icon
+		[RadioGroup.name]: RadioGroup,
+		[Radio.name]: Radio,
+		[CellGroup.name]: CellGroup,
+		[Cell.name]: Cell,
+		[Icon.name]: Icon
 	} 
 }
 </script>
-<style scoped>
+<style>
 .address{
 	font-size: 12px;
 	color: #666;

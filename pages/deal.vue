@@ -33,11 +33,12 @@
 		  </van-cell>
 		</van-cell-group>
 
-		<van-popup v-model="showExpressList" position="bottom">
-			<myexpress 
-			:lists="expressList"
-			@select="OnExpress" />
-		</van-popup>
+    <van-popup v-model="showExpressList" position="bottom">
+      <myexpress
+       :lists="expressList"
+       @select="OnExpress" 
+      />
+    </van-popup>
 
 		<van-cell-group>
 		  <van-field
@@ -99,12 +100,24 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import { Toast } from 'vant'
+import { 
+  Toast, 
+  Area,
+  Popup, 
+  AddressEdit, 
+  AddressList, 
+  SubmitBar, 
+  Cell, 
+  CellGroup, 
+  Card,
+  Field 
+} from 'vant'
 import myaddress from '~/components/address.vue'
 import myexpress from '~/components/express.vue'
 import areaList from '../static/ared.js'
 
 export default {
+  middleware: 'wechat-auth',
   data() {
     return {
     	message: '',
@@ -249,8 +262,18 @@ export default {
     }
   },
   components: {
-  	myaddress,
-  	myexpress
+    [Field.name]: Field,
+    [Toast.name]: Toast, 
+    [Popup.name]: Popup, 
+    [AddressEdit.name]: AddressEdit, 
+    [AddressList.name]: AddressList, 
+    [SubmitBar.name]: SubmitBar,
+    [Cell.name]: Cell, 
+    [Area.name]: Area,
+    [CellGroup.name]: CellGroup, 
+    [Card.name]: Card,
+  	[myaddress.name]: myaddress,
+  	[myexpress.name]: myexpress
   },
   beforeMount() {
   	let id = chosenAddressIsDefault(this.list)

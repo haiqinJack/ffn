@@ -29,11 +29,12 @@
 </template>
 <script >
 import { mapState } from 'vuex'
-import { Toast } from 'vant'
+import { Toast, Sku } from 'vant'
 import card from '~/components/card.vue'
 import FooterAction from '~/components/footer-action.vue'
 
 export default {
+	middleware: 'wechat-auth',
 	data() {
 		return {
 			showBase: false,
@@ -67,8 +68,6 @@ export default {
 			console.log('购买')
 		},		
 		onAddCart(data) {
-			console.log(data)
-			console.log(this.currentGoods)
 			console.log('添加到购物车')
       let cart = {}
       cart.id = this.currentGoods.id
@@ -148,8 +147,9 @@ export default {
 		})
 	},
 	components: {
+		[Toast.name]: Toast,
+		[Sku.name]: Sku,
 		card,
-		Toast,
 		FooterAction
 	},
 	beforeCreate() {

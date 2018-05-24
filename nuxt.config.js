@@ -6,7 +6,7 @@ module.exports = {
     title: 'starter',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      // { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
@@ -19,7 +19,10 @@ module.exports = {
   /*
   ** Global CSS
   */
-
+  css: [
+    'element-ui/lib/theme-chalk/index.css',
+    'vant/lib/vant-css/index.css'
+  ],
   /*
   ** Customize the progress-bar color
   */
@@ -28,6 +31,11 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    analyze: true,
+    // vendor: [
+    //   '~/plugins/vant', 
+    //   // '~/plugins/element-ui'
+    // ], 
     /*
      ** Run ESLINT on save
      */
@@ -41,6 +49,22 @@ module.exports = {
     //     })
     //   }
     // }
+    loaders: [
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 1000, // 1KO
+          name: 'img/[name].[hash:7].[ext]'
+        }
+      }
+    ]
   },
-  plugins: ['~plugins/vant','~plugins/element-ui.js']
+  // plugins: [
+  //   { src: '~plugins/vant', ssr: false}, 
+  //   // { src: '~plugins/element-ui', ssr: false}
+  // ],
+  performance: {
+    prefetch: false
+  }
 }

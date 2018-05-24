@@ -1,4 +1,7 @@
 export default {
+  SET_USER: (state, user) => {
+    state.user = user
+  },
   SET_PAYMENT(state, value) {
     state.payment = value
   },

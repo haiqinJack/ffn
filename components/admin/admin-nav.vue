@@ -1,9 +1,9 @@
 <template>
 	<van-collapse v-model="activeNames">
 	  <van-collapse-item  name="1">
-	  	<div slot="title"><van-icon name="pending-orders" />&nbsp;订单管理</div>
+	  	<div slot="title"><van-icon name="pending-orders" />&nbsp;发货管理</div>
 			<van-cell title="订单查询" url="" class="bg"/>
-			<van-cell title="订单查询" url="" class="bg"/>
+			<van-cell title="运费模版" url="" class="bg"/>
 	  </van-collapse-item>
 	  <van-collapse-item name="2">
 	  	<div slot="title"><van-icon name="tosend" />&nbsp;商品管理</div>
@@ -19,7 +19,16 @@
 	</van-collapse>	
 </template>
 <script>
-import { Collapse, CollapseItem, Icon, Cell, CellGroup } from 'vant';
+import Vue from 'vue'
+import { Collapse, CollapseItem, Icon, Cell, CellGroup } from 'vant'
+import { Form, FormItem, Input, Upload, Button, Dialog} from 'element-ui'
+
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
+Vue.use(Upload)
+Vue.use(Button)
+Vue.use(Dialog)
 
 export default {
   data() {
@@ -28,10 +37,16 @@ export default {
     };
   },
 	components: {
-		Collapse, 
-		CollapseItem, 
-		Icon, 
-		Cell
+		[Collapse.name]: Collapse, 
+		[CollapseItem.name]: CollapseItem, 
+		[Icon.name]: Icon, 
+		[Cell.name]: Cell,
+		[Form.name]: Form,
+		[FormItem.name]: FormItem,
+		[Input.name]: Input,
+		[Upload.name]: Upload,
+		[Button.name]: Button,
+		[Dialog.name]: Dialog
 	},
 }
 </script>

@@ -32,8 +32,8 @@ import { Button, Stepper } from 'vant';
 
 export default {
   components: {
-    Button,
-    Stepper
+    [Button.name]: Button,
+    [Stepper.name]: Stepper
   },
   data() {
     return {
@@ -62,10 +62,10 @@ export default {
       this.$emit('delete',this.id)
     },
     onIncrease() {
-      this.$emit('increase', this.$vnode.key, this.id)
+      this.$emit('increase', this.$vnode.key, this.id, this.desc)
     },
     onDecrease() {
-      this.$emit('decrease', this.$vnode.key, this.id)
+      this.$emit('decrease', this.$vnode.key, this.id, this.desc)
     }
   }
 }

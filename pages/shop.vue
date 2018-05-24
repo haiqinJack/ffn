@@ -31,10 +31,11 @@ import {
 	NoticeBar,
 	Swipe, 
 	SwipeItem,
-	Lazy 
+	Lazyload 
 } from 'vant'
-
+import Vue from 'vue'
 import FooterAction from '~/components/footer-action.vue'
+Vue.use(Lazyload, {})
 
 export default {
 	data() {
@@ -56,6 +57,10 @@ export default {
 		}
 	},
 	components: {
+		[NoticeBar.name]: NoticeBar,
+		[Swipe.name]: Swipe,
+		[SwipeItem.name]: SwipeItem,
+		[Lazyload.name]: Lazyload,
 		FooterAction
 	}
 }

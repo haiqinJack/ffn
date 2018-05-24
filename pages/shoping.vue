@@ -80,10 +80,12 @@ import {
   Lazyload,
   Loading
 } from 'vant';
-import { mapState } from 'vuex'
 import Vue from 'vue'
+Vue.use(Lazyload, {})
+import { mapState } from 'vuex'
 
 export default {
+  middleware: 'wechat-auth',
   data() {
     return {
       resetSelectedSkuOnHide: true,
@@ -181,6 +183,21 @@ export default {
       }
       return spec
     }
+  },
+  components: {
+    [Tag.name]: Tag,
+    [Col.name]: Col,
+    [Icon.name]: Icon,
+    [Cell.name]: Cell,
+    [CellGroup.name]: CellGroup,
+    [Swipe.name]: Swipe,
+    [SwipeItem.name]: SwipeItem,
+    [GoodsAction.name]: GoodsAction,
+    [GoodsActionBigBtn.name]: GoodsActionBigBtn,
+    [GoodsActionMiniBtn.name]: GoodsActionMiniBtn,
+    [Toast.name]: Toast,
+    [Sku.name]: Sku,
+    [Loading.name]: Loading,
   },
   beforeCreate() {
     let goodId = this.$route.query.id

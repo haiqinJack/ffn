@@ -20,6 +20,7 @@
 import { Icon } from 'vant';
 
 export default {
+	name: 'myaddress',
   props: {
     name: String,
     tel: String,
@@ -44,8 +45,8 @@ export default {
       }
     }
   },
-  Components: {
-  	Icon
+  components: {
+  	[Icon.name]: Icon
   }
 }
 </script>

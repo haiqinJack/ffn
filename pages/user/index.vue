@@ -39,11 +39,11 @@ import FooterAction from '~/components/footer-action.vue'
 
 export default {
   components: {
-    Row,
-    Col,
-    Icon,
-    Cell,
-    CellGroup,
+    [Row.name]: Row,
+    [Col.name]: Col,
+    [Icon.name]: Icon,
+    [Cell.name]: Cell,
+    [CellGroup.name]: CellGroup,
     FooterAction
   }
 };

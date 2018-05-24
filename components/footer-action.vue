@@ -4,32 +4,35 @@
 	<div class="shop-nav">
 		<div class="shop-nav nav-menu nav-menu-1 has-menu-3">
 			<div class="nav-special-item">
-				<a href="/shop" class="home"></a>
+				<!-- <a href="/shop" class="home"></a> -->
+                <nuxt-link to="/allgoods">                      
+                    <i class="home"></i>
+                </nuxt-link>
 			</div>
 			<div class="nav-items-wrap">
 				<div class="nav-item">
-					<a href="/allgoods" class="mainmenu js-mainmenu">
-						<span class="mainmenu-txt">
-							<i class="arrow-weixin"></i>
-							全部商品
-						</span>
-					</a>
+                    <nuxt-link to="/allgoods" class="mainmenu js-mainmenu">                      
+                        <span class="mainmenu-txt">
+                            <i class="arrow-weixin"></i>
+                            全部商品
+                        </span>
+                    </nuxt-link>
 				</div>
 				<div class="nav-item">
-					<a href="/cart" class="mainmenu js-mainmenu">
-						<span class="mainmenu-txt">
-							<i class="arrow-weixin"></i>
-							购物车
-						</span>
-					</a>
+                    <nuxt-link to="/cart" class="mainmenu js-mainmenu">                      
+                        <span class="mainmenu-txt">
+                            <i class="arrow-weixin"></i>
+                            购物车
+                        </span>
+                    </nuxt-link>
 				</div>
 				<div class="nav-item">
-					<a href="/user" class="mainmenu js-mainmenu">
-						<span class="mainmenu-txt">
-							<i class="arrow-weixin"></i>
-							个人中心
-						</span>
-					</a>
+                    <nuxt-link to="/user" class="mainmenu js-mainmenu">                      
+                        <span class="mainmenu-txt">
+                            <i class="arrow-weixin"></i>
+                            个人中心
+                        </span>
+                    </nuxt-link>
 				</div>								
 			</div>
 		</div>
@@ -37,21 +40,8 @@
     </div>
 </template>
 <script>
-import {
-  GoodsAction,
-  GoodsActionBigBtn,
-  GoodsActionMiniBtn
-} from 'vant'
-
 export default {
-  methods: {
-    onClickMiniBtn() {
-      Toast('点击图标');
-    },
-    onClickBigBtn() {
-      Toast('点击按钮');
-    }
-  }	
+
 }	
 </script>
 <style>
