@@ -20,6 +20,9 @@ const wechatConfig = {
 
 export const getWechat = () => {
 	const wechatClient = new Wechat(wechatConfig.wechat)
+	// const menu = require('../config/menu').default
+	
+	// wechatClient.handle('createMenu', menu)
 
 	return wechatClient	
 }

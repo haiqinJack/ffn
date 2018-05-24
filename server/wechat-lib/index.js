@@ -20,6 +20,9 @@ const api = {
 		batchTag: base + 'tags/members/batchtagging?',
 		batchUnTag: base + 'tags/members/batchuntagging?',
 		getUserTagList: base + 'tags/getidlist?'
+	},
+	menu: {
+		create: base + 'menu/create?'
 	}
 }
 
@@ -32,6 +35,12 @@ export default class Wechat {
 		this.saveAccessToken = opts.saveAccessToken	
 		this.getTicket = opts.getTicket
 		this.saveTicket = opts.saveTicket
+	}
+
+	createMenu(token, menu) {
+		const url = `${api.menu.create}access_token=${token}`
+
+		return {method: 'POST', url: url, body: menu}
 	}
 
 	signature(ticket, url) {

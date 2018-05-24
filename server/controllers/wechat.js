@@ -20,8 +20,8 @@ export async function signature(ctx, next) {
 export async function redirect(ctx, next) {
 	const target  = config.SITE_ROOT_URL + '/oauth'
 	const scope = 'snsapi_userinfo'
-	const {a, b} = ctx.query
-	const params = `${a}_${b}`
+	const { visit } = ctx.query
+	const params = `${visit}`
 	const url = api.getAuthorizeURL(target, params, scope)
 
 	ctx.redirect(url)
@@ -30,7 +30,6 @@ export async function redirect(ctx, next) {
 export async function oauth(ctx, next) {
 	let url = ctx.query.url
 	url = decodeURIComponent(url)
-	
 	const urlObj = urlParse(url)
 	const params = queryParse(urlObj.query)
 	const code = params.code
