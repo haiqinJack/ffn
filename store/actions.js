@@ -45,5 +45,9 @@ export default {
   async saveCart({ state }, cart) {
     const res = await Services.saveCart(state.user.unionid, cart)
     return res
-  }     
+  },   
+  async createOrder({ state }, { total, message, contact, products}) {
+    const res = await Services.createOrder(state.user.unionid, total, message, contact, products)
+    return res
+  }
 }

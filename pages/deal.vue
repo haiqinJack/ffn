@@ -64,12 +64,12 @@
 				loading
 			  :price="total"
 			  button-text="提交订单"
-			  @submit="onSubmit"
+			  @submit="payHandle"
 			/>
 			<van-submit-bar v-else
 			  :price="total"
 			  button-text="提交订单"
-			  @submit="onSubmit"
+			  @submit="payHandle"
 			/>
 			
 		</template>
@@ -115,9 +115,10 @@ import {
 import myaddress from '~/components/address.vue'
 import myexpress from '~/components/express.vue'
 import areaList from '../static/ared.js'
+import wechat from '~/static/mixins/wechat.js'
 
 export default {
-  middleware: 'wechat-auth',
+//  middleware: 'wechat-auth',
   data() {
     return {
     	message: '',
@@ -148,7 +149,7 @@ export default {
           address_detail: '文三路 138 号东方通信大厦 7 楼 501 室',
           area_code: '"110101"',
           postal_code: '5300000',
-          is_default: false,
+          is_default: true,
           address: '广西壮族自治区南宁市文三路 138 号东方通信大厦 7 楼 501 室'
         },
         {
@@ -176,8 +177,8 @@ export default {
       return this.chosenAddressId !== null ? 'edit' : 'add';
     },
     currentContact() {
-      const id = this.chosenAddressId;
-      return id !== null ? this.list.filter(item => item.id === id)[0] : {};
+      let id = this.chosenAddressId;
+      return id !== null ? this.list.filter(item => item.id === id)[0] : {}
     },
     currentExpress() {
       return this.expressList.filter(item => item.id === 1)[0]
@@ -192,6 +193,45 @@ export default {
   },
 
   methods: {
+    async payHandle() {
+      const total = this.total
+      const message = this.message
+      const contact = this.currentContact
+      const products = this.cartList
+
+      if(JSON.stringify(contact) === "{}"){
+        Toast('请选择订单联系人')
+        return 
+      }
+      // window.wx.chooseWXPay({
+      //   timestamp: 0, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+      //   nonceStr: '', // 支付签名随机串，不长于 32 位
+      //   package: '', // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
+      //   signType: '', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+      //   paySign: '', // 支付签名
+      //   success: (res) => {
+      //   // 支付成功后的回调函数
+      //     try {
+      //       window.WeixinJSBridge.log(res.err_msg)
+      //     } catch(e) {
+      //       console.error(e)
+      //     }
+      //   }        
+      // })
+      // this.loading = true
+      console.log(total, message, contact, products, 'deal')
+      const res = await this.$store.dispatch('createOrder', {total, message, contact, products})
+      console.log(res.data,'res =======')
+      WeixinJSBridge.invoke('getBrandWCPayRequest', payargs, function(res){
+        if(res.err_msg == "get_brand_wcpay_request:ok"){
+          alert("支付成功");
+          // 这里可以跳转到订单完成页面向用户展示
+        }else{
+          alert("支付失败，请重试");
+        }
+      });
+
+    },    
     // 添加联系人
     onAdd() {
       this.editingContact = { id: this.list.length };
@@ -233,27 +273,6 @@ export default {
         this.chosenAddressId = null;
       }
     },
-    onSubmit() {
-      const total = this.total
-      const message = this.message
-      const contact = this.currentContact
-      const products = this.cartList
-
-      if(JSON.stringify(contact) === "{}"){
-        Toast('请选择订单联系人')
-        return 
-      }
-
-    	this.loading = true
-    	setTimeout(() => {
-    		this.loading = false
-    		console.log('提交成功')
-    		console.log(total,'支付金额')
-    		console.log(message, '留言消息')
-        console.log(contact, '联系人')
-        console.log(products, '订单ID')
-    	}, 5000)
-    },
     OnExpress(item, index) {
     	this.showExpressList = false
     },
@@ -261,6 +280,7 @@ export default {
       return (price / 100).toFixed(2)
     }
   },
+  mixins: [wechat],
   components: {
     [Field.name]: Field,
     [Toast.name]: Toast, 
@@ -275,11 +295,11 @@ export default {
   	[myaddress.name]: myaddress,
   	[myexpress.name]: myexpress
   },
-  beforeMount() {
-  	let id = chosenAddressIsDefault(this.list)
-  	this.chosenAddressId = id
-
+  async beforeMount() {
     this.expressList[0].price = getPrice(this.cartList, 'express')
+
+    const url = window.location.href
+    await this.wechatInit(url)
 
   }
 }	

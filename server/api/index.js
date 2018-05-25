@@ -16,6 +16,11 @@ import {
 	saveCart
 } from './cart'
 
+import {
+	createOrder,
+	fetchOrderByUnionid
+} from './order'
+
 export {
 	getGoods,
 	getGoodsOneById,
@@ -25,5 +30,7 @@ export {
 	getAuthorizeURL,
 	getUserInfoByCode,
 	getCartByUnionid,
-	saveCart
+	saveCart,
+	createOrder,
+	fetchOrderByUnionid
 }

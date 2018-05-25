@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { Checkbox, CheckboxGroup, Card, SubmitBar, Toast, Button, Dialog } from 'vant';
+import { Checkbox, CheckboxGroup, Card, SubmitBar, Toast, Button, Dialog, Cell } from 'vant';
 import { mapState } from 'vuex'
 import myedit  from '~/components/edit.vue'
 import editcard from '~/components/edit-card.vue'
@@ -93,6 +93,7 @@ export default {
     };
   },
   components: {
+    [Cell.name]: Cell,
     [Checkbox.name]: Checkbox,
     [CheckboxGroup.name]: CheckboxGroup,
     [Card.name]: Card,

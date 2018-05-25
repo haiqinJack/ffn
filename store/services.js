@@ -10,10 +10,13 @@ const url = 'http://rap2api.taobao.org/app/mock/10346//api'
 
 class Services {
 	getWechatSignture (url) {
-		return axios.get(`${baseUrl}/user?url=${url}`)
+		return axios.get(`/wechat-signature?url=${encodeURIComponent(url)}`)
 	}
 	getUserInfoByOAuth (url) {
 		return axios.get(`/wechat-oauth?url=${url}`)
+	}
+	createOrder(unionid, total, message, contact, products) {
+		return axios.post('/wechat-pay', {unionid, total, message, contact, products})
 	}
 	fetchGoods(goodsId) {
     return axios.get(`${baseUrl}/goods/${goodsId}`)

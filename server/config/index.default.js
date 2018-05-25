@@ -6,6 +6,11 @@ export default{
 		appSecret: '',
 		token: ''
 	},
+	shop: {
+		key: '',
+		mchId: '',
+		notifyUrl: ''
+	},
   qiniu: {
     AK: '',
     SK: '',

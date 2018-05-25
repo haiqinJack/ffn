@@ -2,7 +2,7 @@ import { controller, get, post } from  '../decorator/router'
 import config from '../config'
 import reply from '../wechat/reply'
 import wechatMiddle from '../wechat-lib/middleware'
-import { signature, redirect, oauth } from '../controllers/wechat'
+import { signature, redirect, oauth, pay, notify } from '../controllers/wechat'
 
 @controller('')
 export class WechatController{
@@ -30,5 +30,15 @@ export class WechatController{
 	@get('/wechat-oauth')
 	async wechatOauth(ctx, next) {
 		await oauth(ctx, next)
+	}
+
+	@post('/wechat-pay')
+	async wechatPay(ctx, next){
+		await pay(ctx, next)
+	}
+
+	@post('/wechat-notify')
+	a() {
+		return notify()
 	}
 }
