@@ -37,6 +37,7 @@ export default {
 	middleware: 'wechat-auth',
 	data() {
 		return {
+			title: '全部商品',
 			showBase: false,
 			resetSelectedSkuOnHide: true,
       closeOnClickOverlay: true,

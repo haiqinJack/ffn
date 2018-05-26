@@ -86,6 +86,7 @@ export default {
   middleware: 'wechat-auth',
   data() {
     return {
+      title: '购物车',
       edit: false,
       checked: false,
       checkedGoods: [],

@@ -88,6 +88,7 @@ export default {
   middleware: 'wechat-auth',
   data() {
     return {
+      title: '法弗纳小铺',
       resetSelectedSkuOnHide: true,
       closeOnClickOverlay: true,
       showBase: false,

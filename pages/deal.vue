@@ -121,6 +121,7 @@ export default {
 //  middleware: 'wechat-auth',
   data() {
     return {
+      title: '待付款的订单',
     	message: '',
     	areaList: areaList,
       chosenAddressId: null, 

@@ -78,7 +78,7 @@ export async function pay(ctx, next) {
 	  out_trade_no: 'ffn' + (+new Date),
 	  total_fee: total,
 	  spbill_create_ip: ip,
-	  openid: unionid,
+	  openid: ctx.session.user.openid,
 	  trade_type: 'JSAPI'
 	}
 
