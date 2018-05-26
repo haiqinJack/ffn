@@ -41,4 +41,9 @@ export class WechatController{
 	a() {
 		return notify()
 	}
+
+	@get('/wechat-menu')
+	async createMenu(ctx, next) {
+		await createMenu(ctx, next)
+	}
 }

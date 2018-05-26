@@ -75,3 +75,14 @@ export async function pay(ctx, next) {
 export function notify () {
 	return wechatPay.notifyMiddleware()
 }
+
+export async function createMenu(ctx, next) {
+	const menu = require('../config/menu.js')
+	const data = await api.createMenu(menu)
+
+	ctx.status= 200
+	ctx.body = {
+		success: true,
+		data: data
+	}
+}

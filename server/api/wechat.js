@@ -25,3 +25,9 @@ export async function getUserInfoByCode(code) {
 
 	return user
 }
+
+export async function createMenu(menu) {
+	const data = await client.handle('createMenu', menu)
+	
+	return data
+}

@@ -1,7 +1,8 @@
 import {
 	getSignatureAsync,
 	getAuthorizeURL,
-	getUserInfoByCode
+	getUserInfoByCode,
+	createMenu
 } from './wechat'
 
 import{
@@ -25,6 +26,7 @@ export {
 	getGoods,
 	getGoodsOneById,
 	getGoodsByIdForSKU,
+	createMenu,
 	saveGoods,
 	getSignatureAsync,
 	getAuthorizeURL,
