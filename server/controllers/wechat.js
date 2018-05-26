@@ -3,6 +3,7 @@ import {parse as urlParse } from 'url'
 import {parse as queryParse } from 'querystring'
 import config from '../config'
 import * as wechatPay from '../wechat-lib/pay'
+import menu from '../config/menu.js'
 
 export async function signature(ctx, next) {
 	let url = ctx.query.url
@@ -77,7 +78,7 @@ export function notify () {
 }
 
 export async function createMenu(ctx, next) {
-	const menu = require('../config/menu.js')
+	console.log(menu)
 	const data = await api.createMenu(menu)
 
 	ctx.status= 200
