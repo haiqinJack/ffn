@@ -31,11 +31,14 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    filenames: {
+      vendor: 'vendor.[hash].js',
+      app: 'app.[chunkhash].js'
+    },
     // analyze: true,
-    // vendor: [
-    //   '~/plugins/vant', 
-    //   '~/plugins/element-ui'
-    // ], 
+    vendor: [
+      'vant'
+    ], 
     /*
      ** Run ESLINT on save
      */
