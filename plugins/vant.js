@@ -1,7 +1,9 @@
 import Vue from 'vue';
-import { Sku , Toast, Lazyload} from 'vant';
-import 'vant/lib/vant-css/index.css';
+import { Lazyload } from 'vant';
 
-Vue.use(Lazyload, {})
-Vue.use(Sku)
-Vue.use(Toast)
+export default () => {
+	Vue.usr(Lazyload, {})
+  Vue.use(Vue)
+}
+
+

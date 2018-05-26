@@ -6,7 +6,7 @@ module.exports = {
     title: 'starter',
     meta: [
       { charset: 'utf-8' },
-      // { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
@@ -32,10 +32,10 @@ module.exports = {
    */
   build: {
     // analyze: true,
-    // vendor: [
-    //   '~/plugins/vant', 
-    //   // '~/plugins/element-ui'
-    // ], 
+    vendor: [
+      '~/plugins/vant', 
+      '~/plugins/element-ui'
+    ], 
     /*
      ** Run ESLINT on save
      */
@@ -60,11 +60,15 @@ module.exports = {
       }
     ]
   },
-  // plugins: [
-  //   { src: '~plugins/vant', ssr: false}, 
-  //   // { src: '~plugins/element-ui', ssr: false}
-  // ],
+  plugins: [
+    { src: '~/plugins/vant', ssr: false}, 
+    { src: '~/plugins/element-ui', ssr: false}
+  ],
   performance: {
     prefetch: false
+  },
+  cache: {
+    max: 1000,
+    maxAge: 9000000
   }
 }
