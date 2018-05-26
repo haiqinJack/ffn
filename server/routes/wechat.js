@@ -2,7 +2,7 @@ import { controller, get, post } from  '../decorator/router'
 import config from '../config'
 import reply from '../wechat/reply'
 import wechatMiddle from '../wechat-lib/middleware'
-import { signature, redirect, oauth, pay, notify } from '../controllers/wechat'
+import { signature, redirect, oauth, pay, notify, createMenu } from '../controllers/wechat'
 
 @controller('')
 export class WechatController{
