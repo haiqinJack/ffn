@@ -31,7 +31,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    analyze: true,
+    // analyze: true,
     // vendor: [
     //   '~/plugins/vant', 
     //   // '~/plugins/element-ui'
