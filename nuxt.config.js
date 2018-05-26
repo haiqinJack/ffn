@@ -32,10 +32,10 @@ module.exports = {
    */
   build: {
     // analyze: true,
-    vendor: [
-      '~/plugins/vant', 
-      '~/plugins/element-ui'
-    ], 
+    // vendor: [
+    //   '~/plugins/vant', 
+    //   '~/plugins/element-ui'
+    // ], 
     /*
      ** Run ESLINT on save
      */
@@ -60,10 +60,10 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    { src: '~/plugins/vant', ssr: false}, 
-    { src: '~/plugins/element-ui', ssr: false}
-  ],
+  // plugins: [
+  //   { src: '~/plugins/vant', ssr: false}, 
+  //   { src: '~/plugins/element-ui', ssr: false}
+  // ],
   performance: {
     prefetch: false
   },
