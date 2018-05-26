@@ -24,23 +24,40 @@ export async function redirect(ctx, next) {
 	const scope = 'snsapi_userinfo'
 	const { visit } = ctx.query
 	const params = `${visit}`
-	// const url = api.getAuthorizeURL(target, params, scope)
-	const url = api.getAuthorizeURL(target, params)
-
-	ctx.redirect(url)
+	if(!ctx.session.user){
+		// const url = api.getAuthorizeURL(target, params, scope)
+		const url = api.getAuthorizeURL(target, params)
+		ctx.redirect(url)
+	}else {
+		const url = config.SITE_ROOT_URL + '/oauth?' +'code=abc&state=' + visit
+		ctx.redirect(url)
+	}	
 }
 
 export async function oauth(ctx, next) {
-	let url = ctx.query.url
-	url = decodeURIComponent(url)
-	const urlObj = urlParse(url)
-	const params = queryParse(urlObj.query)
-	const code = params.code
-	const user = await api.getUserInfoByCode(code)
+	if(!ctx.session.user){
+		let url = ctx.query.url
+		if(url) {
+			url = decodeURIComponent(url)
+			const urlObj = urlParse(url)
+			const params = queryParse(urlObj.query)
+			const code = params.code
+			const user = await api.getUserInfoByCode(code)
 
-	ctx.body = {
-		success: true,
-		data: user
+			ctx.session.user = user
+
+			ctx.body = {
+				success: true,
+				data: user
+			}
+		} else {
+			ctx.redirect('/wechat-redirect')
+		}
+	}else {
+		ctx.body = {
+			success: true,
+			data: ctx.session.user
+		}
 	}
 }
 
