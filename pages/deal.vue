@@ -223,7 +223,7 @@ export default {
       console.log(total, message, contact, products, 'deal')
       const res = await this.$store.dispatch('createOrder', {total, message, contact, products})
       console.log(res.data,'res =======')
-      WeixinJSBridge.invoke('getBrandWCPayRequest', payargs, function(res){
+      WeixinJSBridge.invoke('getBrandWCPayRequest', res.data.data, function(res){
         if(res.err_msg == "get_brand_wcpay_request:ok"){
           alert("支付成功");
           // 这里可以跳转到订单完成页面向用户展示
