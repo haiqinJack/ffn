@@ -84,9 +84,13 @@ import editcard from '~/components/edit-card.vue'
 
 export default {
   middleware: 'wechat-auth',
+  head() {
+    return {
+      title: '购物车'
+    }
+  },
   data() {
     return {
-      title: '购物车',
       edit: false,
       checked: false,
       checkedGoods: [],

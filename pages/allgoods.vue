@@ -35,9 +35,13 @@ import FooterAction from '~/components/footer-action.vue'
 
 export default {
 	middleware: 'wechat-auth',
+	head() {
+		return {
+			title: '全部商品'
+		}
+	},
 	data() {
 		return {
-			title: '全部商品',
 			showBase: false,
 			resetSelectedSkuOnHide: true,
       closeOnClickOverlay: true,

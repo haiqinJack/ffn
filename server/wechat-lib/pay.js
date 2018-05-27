@@ -21,9 +21,8 @@ export const getBrandWCPayRequestParams = (order) =>{
 	return new Promise((resolve, reject) => {
 		payment.getBrandWCPayRequestParams(order, (err, payargs) => {
 			if(err) {
-				reject(err,'err')
+				reject(err)
 			}else{
-				console.log(payargs,'payargs')
 				resolve(payargs)
 			}	
 		})

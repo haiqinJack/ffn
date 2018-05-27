@@ -86,9 +86,13 @@ import { mapState } from 'vuex'
 
 export default {
   middleware: 'wechat-auth',
+  head() {
+    return {
+      title: this.goods.title
+    }
+  },
   data() {
     return {
-      title: '法弗纳小铺',
       resetSelectedSkuOnHide: true,
       closeOnClickOverlay: true,
       showBase: false,
