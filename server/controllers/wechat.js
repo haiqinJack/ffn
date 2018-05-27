@@ -81,7 +81,7 @@ export async function pay(ctx, next) {
 	  openid: ctx.session.user.openid,
 	  trade_type: 'JSAPI'
 	}
-
+	console.log(orderParams,'orderParams')
 	const payargs = await wechatPay.getBrandWCPayRequestParams(orderParams)
 
 	ctx.body= {
