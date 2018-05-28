@@ -20,7 +20,6 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css',
     'vant/lib/vant-css/index.css'
   ],
   /*

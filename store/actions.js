@@ -2,6 +2,12 @@ import axios from 'axios'
 import Services from './services'
 
 export default {
+  nuxtServerInit({ commit }, { req}) {
+    if(req.session && req.session.user) {
+      const user = req.session.user
+      commit('SET_USER', user)
+    } 
+  },
   getWechatSignture({ commit }, url) {
   	return Services.getWechatSignture(url)
   },
@@ -36,10 +42,6 @@ export default {
   },
   async fetchQiniuToken() {
     const res = await Services.fetchQiniuToken()
-    return res.data
-  },
-  async saveGoods({}, goods) {
-    const res = await Services.saveGoods(goods)
     return res.data
   },
   async saveCart({ state }, cart) {

@@ -6,7 +6,7 @@ export const addBody = app => {
 }
 
 export const addSession = app => {
-  app.keys = ['got']
+  app.keys = ['fafuna']
 
   const CONFIG = {
     key: 'koa:sess',

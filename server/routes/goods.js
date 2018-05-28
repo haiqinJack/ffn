@@ -2,7 +2,6 @@ import xss from 'xss'
 import R from 'ramda'
 import { controller, get, post } from  '../decorator/router'
 import * as api from '../api/goods'
-import config from '../config'
 
 @controller('/api/goods')
 export class GoodsController{

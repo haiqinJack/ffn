@@ -13,18 +13,6 @@ export async function getGoodsCard(limit = 20) {
 }
 
 /**
- * 保存商品
- * @param { Object } goods 商品对象
- */
-export async function saveGoods(goods) {
-	goods = new Goods(goods)
-
-	goods = await goods.save()
-
-	return goods
-}
-
-/**
  * 根据商品ID获取一个商品
  * @param { [String, Number] } id 商品ID
  */

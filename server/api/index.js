@@ -9,7 +9,7 @@ import{
 	getGoods,
 	getGoodsOneById,
 	getGoodsByIdForSKU,
-	saveGoods
+	
 } from './goods'
 
 import {
@@ -27,7 +27,6 @@ export {
 	getGoodsOneById,
 	getGoodsByIdForSKU,
 	createMenu,
-	saveGoods,
 	getSignatureAsync,
 	getAuthorizeURL,
 	getUserInfoByCode,

@@ -30,9 +30,6 @@ class Services {
 	fetchQiniuToken() {
 		return axios.get(`${baseUrl}/qiniu`)
 	}
-	saveGoods(goods) {
-		return axios.post(`${baseUrl}/goods/create`, goods)
-	}
 	saveCart(unionid, cart) {
 		return axios.post(`${baseUrl}/cart/create`, {unionid, cart})
 	}
