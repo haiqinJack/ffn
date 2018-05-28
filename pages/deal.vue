@@ -118,7 +118,7 @@ import areaList from '../static/ared.js'
 import wechat from '~/static/mixins/wechat.js'
 
 export default {
-//  middleware: 'wechat-auth',
+  middleware: 'wechat-auth',
   data() {
     return {
       title: '待付款的订单',
