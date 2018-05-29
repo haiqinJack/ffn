@@ -3,6 +3,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const OrderSchema = new Schema({
 	unionid: String,
+	openid: String, 
+	out_trade_no: String, // 商户订单号
+	paySign: String, 
 	goods:[
 		{
 			title: String, // 标题

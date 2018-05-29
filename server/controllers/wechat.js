@@ -4,6 +4,9 @@ import {parse as queryParse } from 'querystring'
 import config from '../config'
 import * as wechatPay from '../wechat-lib/pay'
 import menu from '../config/menu.js'
+import getClintIp from 'ipware'
+
+const getIp = getClintIp().getIp
 
 export async function signature(ctx, next) {
 	let url = ctx.query.url
@@ -62,7 +65,9 @@ export async function oauth(ctx, next) {
 }
 
 export async function pay(ctx, next) {
-	const ip = ctx.ip.replace('::fff:', '')
+	const ipInfo = getIp(ctx.request.req)
+	let ip = ipInfo.clientIp
+	ip = ip.replace('::ffff:', '')
 	const { unionid, total, message, contact, products } = ctx.request.body
 	let order = {
 		unionid,
@@ -71,11 +76,12 @@ export async function pay(ctx, next) {
 		address: contact, 
 		goods: products
 	}
-	const data = await api.createOrder(order)
+	console.log(products)
+	let out_trade_no = 'ffn'+ (new Date)
 	const orderParams = {
 	  body:'法弗纳商城-智能设备',
-	  attach: ('法弗纳商城-智能设备' + '&' + ip),
-	  out_trade_no: 'ffn' + (+new Date),
+	  attach: '法弗纳商城-智能设备',
+	  out_trade_no: out_trade_no,
 	  total_fee: total,
 	  spbill_create_ip: ip,
 	  openid: ctx.session.user.openid,
@@ -83,6 +89,11 @@ export async function pay(ctx, next) {
 	}
 
 	const payargs = await wechatPay.getBrandWCPayRequestParams(orderParams)
+
+	order.out_trade_no = out_trade_no
+	order.paySign = params.paySign
+
+	const data = await api.createOrder(order)
 
 	ctx.body= {
 		success: true,
