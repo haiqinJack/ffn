@@ -76,8 +76,8 @@ export async function pay(ctx, next) {
 		address: contact, 
 		goods: products
 	}
-	console.log(products)
-	let out_trade_no = 'ffn'+ (new Date)
+	let out_trade_no = ('ffn' + Date.now())
+	console.log(out_trade_no)
 	const orderParams = {
 	  body:'法弗纳商城-智能设备',
 	  attach: '法弗纳商城-智能设备',
