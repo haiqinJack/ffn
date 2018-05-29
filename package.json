@@ -17,6 +17,7 @@
     "axios": "^0.18.0",
     "cross-env": "^5.0.1",
     "glob": "^7.1.2",
+    "ipware": "^1.0.0",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.4.0",
