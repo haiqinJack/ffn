@@ -91,7 +91,7 @@ export async function pay(ctx, next) {
 	const payargs = await wechatPay.getBrandWCPayRequestParams(orderParams)
 
 	order.out_trade_no = out_trade_no
-	order.paySign = params.paySign
+	order.paySign = payargs.paySign
 
 	const data = await api.createOrder(order)
 
