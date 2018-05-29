@@ -72,8 +72,10 @@ export async function pay(ctx, next) {
 		goods: products
 	}
 	const data = await api.createOrder(order)
+	console.log(products.title)
+	console.log(products.title + '&' + ip)
 	const orderParams = {
-	  body: products.title,
+	  body:('法弗纳商城-' + products.title),
 	  attach: (products.title + '&' + ip),
 	  out_trade_no: 'ffn' + (+new Date),
 	  total_fee: total,
