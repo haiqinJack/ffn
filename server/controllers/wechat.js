@@ -4,9 +4,7 @@ import {parse as queryParse } from 'querystring'
 import config from '../config'
 import * as wechatPay from '../wechat-lib/pay'
 import menu from '../config/menu.js'
-import getClintIp from 'ipware'
 
-const getIp = getClintIp().getIp
 
 export async function signature(ctx, next) {
 	let url = ctx.query.url
@@ -65,8 +63,7 @@ export async function oauth(ctx, next) {
 }
 
 export async function pay(ctx, next) {
-	const ipInfo = getIp(ctx.request.req)
-	let ip = ipInfo.clientIp
+	let ip = ctx.req.ip_info.clientIp
 	ip = ip.replace('::ffff:', '')
 	const { unionid, total, message, contact, products } = ctx.request.body
 	let order = {
