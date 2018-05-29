@@ -70,29 +70,30 @@ export async function pay(ctx, next) {
 	ip = ip.replace('::ffff:', '')
 
 	const { unionid, total, message, contact, products } = ctx.request.body
-	let order = {
-		unionid,
-		totalFee: total, 
-		message, 
-		address: contact, 
-		goods: products
-	}
 	let out_trade_no = ('ffn' + Date.now())
-	
+	let openid = ctx.session.user.openid
 	const orderParams = {
 	  body:'法弗纳商城-智能设备',
 	  attach: '法弗纳商城-智能设备',
 	  out_trade_no: out_trade_no,
 	  total_fee: total,
 	  spbill_create_ip: ip,
-	  openid: ctx.session.user.openid,
+	  openid: openid,
 	  trade_type: 'JSAPI'
 	}
 
 	const payargs = await wechatPay.getBrandWCPayRequestParams(orderParams)
 
-	order.out_trade_no = out_trade_no
-	order.paySign = payargs.paySign
+	let order = {
+		unionid,
+		openid: openid,
+		totalFee: total, 
+		message, 
+		address: contact, 
+		goods: products,
+		out_trade_no,
+		paySign: payargs.paySign,
+	}
 
 	const data = await api.createOrder(order)
 
