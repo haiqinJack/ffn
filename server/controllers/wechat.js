@@ -73,8 +73,8 @@ export async function pay(ctx, next) {
 	}
 	const data = await api.createOrder(order)
 	const orderParams = {
-	  body: goods.title,
-	  attach: goods.title + '&' + ip,
+	  body: order.goods.title,
+	  attach: order.goods.title + '&' + ip,
 	  out_trade_no: 'ffn' + (+new Date),
 	  total_fee: total,
 	  spbill_create_ip: ip,
