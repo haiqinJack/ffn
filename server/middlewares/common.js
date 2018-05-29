@@ -23,8 +23,7 @@ export const addSession = app => {
 }
 
 export const ipInfo = app => {
-  app.use(function(req, res, next) {
+  app.use(function(req, res) {
     req.ip_info = get_ip(req)
-    next()
   })
 }
