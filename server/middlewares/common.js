@@ -24,7 +24,7 @@ export const addSession = app => {
 
 export const ipInfo = app => {
   app.use(function(ctx, next) {
-    ctx.ip_info = get_ip(ctx.req)
+    ctx.request.ip_info = get_ip(ctx.request)
     next()
   })
 }

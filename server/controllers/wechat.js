@@ -63,7 +63,7 @@ export async function oauth(ctx, next) {
 }
 
 export async function pay(ctx, next) {
-	let ip = ctx.ip_info.clientIp
+	let ip = ctx.request.ip_info.clientIp
 	ip = ip.replace('::ffff:', '')
 	const { unionid, total, message, contact, products } = ctx.request.body
 	let order = {
