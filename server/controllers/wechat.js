@@ -68,9 +68,7 @@ export async function pay(ctx, next) {
 	const ipInfo = get_ip(ctx.request.req)
 	let ip = ipInfo.clientIp
 	ip = ip.replace('::ffff:', '')
-	let ip2 = ctx.request.ip
-	console.log(ip)
-	console.log(ip2)
+
 	const { unionid, total, message, contact, products } = ctx.request.body
 	let order = {
 		unionid,
@@ -80,7 +78,7 @@ export async function pay(ctx, next) {
 		goods: products
 	}
 	let out_trade_no = ('ffn' + Date.now())
-	console.log(out_trade_no)
+	
 	const orderParams = {
 	  body:'法弗纳商城-智能设备',
 	  attach: '法弗纳商城-智能设备',
