@@ -1,8 +1,5 @@
 import koaBody from 'koa-bodyparser'
 import session from 'koa-session'
-import getClintIp from 'ipware'
-
-const get_ip = getClintIp().get_ip
 
 export const addBody = app => {
 	app.use(koaBody())
@@ -20,11 +17,4 @@ export const addSession = app => {
   }
 
   app.use(session(CONFIG, app))
-}
-
-export const ipInfo = app => {
-  app.use(function(ctx, next) {
-    ctx.request.ip_info = get_ip(ctx.request)
-    next()
-  })
 }
