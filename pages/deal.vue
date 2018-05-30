@@ -188,7 +188,7 @@ export default {
       })
       this.cardType1 = 'edit'
       this.currentContact1 = obj
-      alert(this.currentContact1.name)
+      alert(obj)
     },
     async payHandle() {
       const total = this.total
