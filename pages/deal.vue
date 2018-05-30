@@ -188,8 +188,8 @@ export default {
           
         }
       })
-      alert(this.currentContact.name)
       this.currentContact = obj
+      alert(this.currentContact.name)
     },
     async payHandle() {
       const total = this.total
