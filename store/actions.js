@@ -54,7 +54,9 @@ export default {
   },
   async fetchUserAddress({ commit, state }) {
     const res = await Services.fetchUserAddress(state.user.unionid)
-    commit('SET_ADDRESS', res.data.data.address)
+    const data = res.data.data
+    let address =  data ? data.address : [] 
+    commit('SET_ADDRESS', address)
     return res
   },
   async saveUserAddress({ commit, state }, address) {
