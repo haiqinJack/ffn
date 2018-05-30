@@ -175,27 +175,23 @@ export default {
   methods: {
     openaddress() {
       let obj = {}
-      this.cardType1 = 'edit'
       window.wx.openAddress({
         success: function (res) {
-  // alert('!!')
-          this.currentContact1.name = res.userName// 收货人姓名
-          this.currentContact1.tel = res.telNumber // 收货人手机号码
-          this.currentContact1.postal_code = res.postalCode // 邮编
-          this.currentContact1.province = res.provinceName // 国标收货地址第一级地址（省）
-          this.currentContact1.city = res.cityName // 国标收货地址第二级地址（市）
-          this.currentContact1.county = res.countryName // 国标收货地址第三级地址（国家）
-          this.currentContact1.address = res.detailInfo // 详细收货地址信息
+          obj.name = res.userName// 收货人姓名
+          obj.tel = res.telNumber // 收货人手机号码
+          obj.postal_code = res.postalCode // 邮编
+          obj.province = res.provinceName // 国标收货地址第一级地址（省）
+          obj.city = res.cityName // 国标收货地址第二级地址（市）
+          obj.county = res.countryName // 国标收货地址第三级地址（国家）
+          obj.address = res.detailInfo // 详细收货地址信息
 
           
         }
       })
-      // setTimeout(function() {
-      // this.cardType1 = 'edit'
-      // this.currentContact1 = obj
-      // }, 500)
-      // alert('???')
-      // this.currentContact1 = obj
+      setTimeout(function() {
+      this.cardType1 = 'edit'
+      this.currentContact1 = obj
+      }, 1000)
     },
     async payHandle() {
       const total = this.total
