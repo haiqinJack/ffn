@@ -175,7 +175,7 @@ export default {
       let obj = {}
       window.wx.openAddress({
         success: function (res) {
-          console.log(res)
+          alert(res.nationalCode)
 
           obj.name = res.userName// 收货人姓名
           obj.tel = res.telNumber // 收货人手机号码
@@ -186,9 +186,9 @@ export default {
           obj.address = res.detailInfo // 详细收货地址信息
           obj.nationalCode = res.nationalCode // 收货地址国家码
           
-          this.currentContact = obj
         }
-      });
+      })
+      this.currentContact = obj
     },
     async payHandle() {
       const total = this.total
