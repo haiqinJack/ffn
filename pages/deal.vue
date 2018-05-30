@@ -188,8 +188,8 @@ export default {
           obj.address = res.detailInfo // 详细收货地址信息
           obj.nationalCode = res.nationalCode // 收货地址国家码
 
-          this.currentContact1 = obj
           this.cardType1 = 'edit'
+          this.currentContact1 = obj
           alert(this.currentContact1.name)
           
         }
