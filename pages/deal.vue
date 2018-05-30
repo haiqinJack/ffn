@@ -1,13 +1,13 @@
 <template>
 	<div>
 		<myaddress 
-			:type="cardType"
-			:name="currentContact.name"
-			:tel="currentContact.tel"
-			:province="currentContact.province"
-			:city="currentContact.city"
-			:county="currentContact.county"
-			:address="currentContact.address"
+			:type="cardType1"
+			:name="currentContact1.name"
+			:tel="currentContact1.tel"
+			:province="currentContact1.province"
+			:city="currentContact1.city"
+			:county="currentContact1.county"
+			:address="currentContact1.address"
 			@click="openaddress"
 		/>
 
@@ -134,6 +134,8 @@ export default {
     	loading: false,
       showList: false,
       showEdit: false,
+      cardType1: 'add',
+      currentContact1: {},
       isEdit: false,
       expressList:[
       	{
@@ -171,9 +173,9 @@ export default {
   },
 
   methods: {
-    openaddress() {
+    async openaddress() {
       let obj = {}
-      window.wx.openAddress({
+      await window.wx.openAddress({
         success: function (res) {
           obj.id = 1
           obj.name = res.userName// 收货人姓名
@@ -183,12 +185,12 @@ export default {
           obj.city = res.cityName // 国标收货地址第二级地址（市）
           obj.county = res.countryName // 国标收货地址第三级地址（国家）
           obj.address = res.detailInfo // 详细收货地址信息
-
-          
+          this.cardType1 = 'edit'
+          alert(this.cardType1)
+          this.currentContact1 = obj
         }
       })
-      this.list.push(obj)
-      this.chosenAddressId = 1
+
     },
     async payHandle() {
       const total = this.total
