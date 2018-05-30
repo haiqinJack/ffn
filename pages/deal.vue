@@ -174,7 +174,7 @@ export default {
 
   methods: {
     async openaddress() {
-      const data = await getopenaddress()
+      const data = await this.getopenaddress()
       alert(data,'Promise')
       this.cardType1 = 'edit'
       this.currentContact1 = data
