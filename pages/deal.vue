@@ -185,8 +185,8 @@ export default {
           obj.city = res.cityName // 国标收货地址第二级地址（市）
           obj.county = res.countryName // 国标收货地址第三级地址（国家）
           obj.address = res.detailInfo // 详细收货地址信息
-          this.cardType1 = 'edit'
           alert(this.cardType1)
+          this.cardType1 = 'edit'
           this.currentContact1 = obj
         }
       })
