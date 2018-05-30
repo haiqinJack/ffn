@@ -185,11 +185,11 @@ export default {
           obj.county = res.countryName // 国标收货地址第三级地址（国家）
           obj.address = res.detailInfo // 详细收货地址信息
           obj.nationalCode = res.nationalCode // 收货地址国家码
+          this.currentContact = obj
+          alert(this.currentContact.name)
           
         }
       })
-      this.currentContact = obj
-      alert(this.currentContact.name)
     },
     async payHandle() {
       const total = this.total
