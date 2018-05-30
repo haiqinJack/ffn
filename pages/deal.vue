@@ -177,7 +177,6 @@ export default {
       let obj = {}
       window.wx.openAddress({
         success: function (res) {
-          alert('!!')
           obj.name = res.userName// 收货人姓名
           obj.tel = res.telNumber // 收货人手机号码
           obj.postal_code = res.postalCode // 邮编
@@ -189,10 +188,10 @@ export default {
           
         }
       })
-
-          this.cardType1 = 'edit'
-          this.currentContact1 = obj
-          alert('??')
+      setTimeout(function() {
+      this.cardType1 = 'edit'
+      this.currentContact1 = obj
+      }, 500)
     },
     async payHandle() {
       const total = this.total
