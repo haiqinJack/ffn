@@ -177,6 +177,9 @@ export default {
       let obj = {}
       window.wx.openAddress({
         success: function (res) {
+      setTimeout(function() {
+        
+      }, 500)
           obj.name = res.userName// 收货人姓名
           obj.tel = res.telNumber // 收货人手机号码
           obj.postal_code = res.postalCode // 邮编
