@@ -177,23 +177,18 @@ export default {
       let obj = {}
       window.wx.openAddress({
         success: function (res) {
-          alert(res.nationalCode)
-
           obj.name = res.userName// 收货人姓名
           obj.tel = res.telNumber // 收货人手机号码
           obj.postal_code = res.postalCode // 邮编
           obj.province = res.provinceName // 国标收货地址第一级地址（省）
           obj.city = res.cityName // 国标收货地址第二级地址（市）
           obj.county = res.countryName // 国标收货地址第三级地址（国家）
-          obj.address = res.detailInfo // 详细收货地址信息
-          obj.nationalCode = res.nationalCode // 收货地址国家码
+          obj.address_detail = res.detailInfo // 详细收货地址信息
           
         }
       })
-
-          this.cardType1 = 'edit'
-          this.currentContact1 = obj
-          alert(this.currentContact1.name)
+      this.cardType1 = 'edit'
+      this.currentContact1 = obj       
     },
     async payHandle() {
       const total = this.total
