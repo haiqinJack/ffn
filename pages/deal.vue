@@ -188,6 +188,7 @@ export default {
           
         }
       })
+      alert(this.currentContact.name)
       this.currentContact = obj
     },
     async payHandle() {
