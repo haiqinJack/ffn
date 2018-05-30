@@ -51,5 +51,14 @@ export default {
   async createOrder({ state }, { total, message, contact, products}) {
     const res = await Services.createOrder(state.user.unionid, total, message, contact, products)
     return res
+  },
+  async fetchUserAddress({ commit, state }) {
+    const res = await Services.fetchUserAddress(state.user.unionid)
+    commit('SET_ADDRESS', res.data.data.address)
+    return res
+  },
+  async saveUserAddress({ commit, state }, address) {
+    const res = await Services.saveUserAddress(state.user.unionid, address)
+    return res
   }
 }

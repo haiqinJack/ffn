@@ -62,10 +62,10 @@ module.exports = {
       }
     ]
   },
-  // plugins: [
-  //   { src: '~/plugins/vant', ssr: false}, 
-  //   { src: '~/plugins/element-ui', ssr: false}
-  // ],
+  plugins: [
+    { src: '~/plugins/vant', ssr: false}, 
+    // { src: '~/plugins/element-ui', ssr: false}
+  ],
   performance: {
     prefetch: false
   },

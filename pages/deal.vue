@@ -96,7 +96,7 @@
 			  @delete="onDelete"
 			/>
 		</van-popup>	
-	</div>
+  </div>
 </template>
 <script>
 import { mapState } from 'vuex'
@@ -119,9 +119,13 @@ import wechat from '~/static/mixins/wechat.js'
 
 export default {
   middleware: 'wechat-auth',
+  head() {
+    return {
+      title: '待付款的订单'
+    }
+  },
   data() {
     return {
-      title: '待付款的订单',
     	message: '',
     	areaList: areaList,
       chosenAddressId: null, 
@@ -134,45 +138,18 @@ export default {
       expressList:[
       	{
       		id: 1,
-      		name: '美团专送',
+      		name: '普通快递',
       		price: 0,
       		desc: '由商家选择合作快递为您服务'
       	}
-      ],
-      list: [
-        {
-          id: '1',
-          name: '张三',
-          tel: '13000000000',
-          province: '广西壮族自治区',
-          city: '南宁市',
-          county: '西乡塘区',
-          address_detail: '文三路 138 号东方通信大厦 7 楼 501 室',
-          area_code: '"110101"',
-          postal_code: '5300000',
-          is_default: true,
-          address: '广西壮族自治区南宁市文三路 138 号东方通信大厦 7 楼 501 室'
-        },
-        {
-          id: '3',
-          name: '张三',
-          tel: '15900000000',
-          province: '广西壮族自治区',
-          city: '南宁市',
-          county: '西乡塘区',
-          address_detail: '文三路 138 号东方通信大厦 7 楼 501 室',
-          area_code: '"110101"',
-          postal_code: '5300000',
-          is_default: false,
-          address: '广西壮族自治区南宁市文三路 138 号东方通信大厦 7 楼 501 室'
-        },
       ]
     };
   },
 
   computed: {
     ...mapState({
-      'cartList': 'payment'
+      'cartList': 'payment',
+      'list': 'address'
     }),
     cardType() {
       return this.chosenAddressId !== null ? 'edit' : 'add';
@@ -265,6 +242,8 @@ export default {
         this.list.push(formatAddress(info));
       }
       this.chosenAddressId = info.id;
+      const data = this.$store.dispatch('saveUserAddress', info)
+      console.log(data)
     },
 
     // 删除联系人
@@ -296,6 +275,9 @@ export default {
     [Card.name]: Card,
   	[myaddress.name]: myaddress,
   	[myexpress.name]: myexpress
+  },
+  beforeCreate() {
+    this.$store.dispatch('fetchUserAddress')
   },
   async beforeMount() {
     this.expressList[0].price = getPrice(this.cartList, 'express')

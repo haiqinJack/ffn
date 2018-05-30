@@ -22,6 +22,9 @@ export default {
   },
   SET_SKUBOX(state, obj) {
     state.skuBox.push(obj)
+  },
+  SET_ADDRESS( state, address) {
+    state.address = address
   }
 }
 

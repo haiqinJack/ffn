@@ -1,10 +1,6 @@
 import axios from 'axios'
 import config from '../server/config'
 
-axios.create({
-	baseUrl: config.SITE_ROOT_URL
-})
-
 const baseUrl = '/api'
 const url = 'http://rap2api.taobao.org/app/mock/10346//api'
 
@@ -36,6 +32,12 @@ class Services {
 	fetchCartList(id) {
 		return axios.get(`${baseUrl}/cart/${id}`)
 	}	
+	fetchUserAddress(unionid) {
+		return axios.get(`${baseUrl}/u/address/${unionid}`)
+	}
+	saveUserAddress(unionid, address) {
+		return axios.post(`${baseUrl}/u/address/create`, {unionid, address})
+	}
 }
 
 export default new Services()

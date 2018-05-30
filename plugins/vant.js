@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import { Lazyload } from 'vant';
+import Vant from 'vant';
+import 'vant/lib/vant-css/index.css'
 
-export default () => {
-	Vue.usr(Lazyload, {})
-  Vue.use(Vue)
-}
+Vue.use(Vant)
+Vue.use(Lazyload, {})
 
 
