@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<myaddress 
-			:type="cardType"
+			:type="cardType1"
 			:name="currentContact1.name"
 			:tel="currentContact1.tel"
 			:province="currentContact1.province"
@@ -136,6 +136,7 @@ export default {
       showEdit: false,
       isEdit: false,
       currentContact1: {},
+      cardType1: 'add',
       expressList:[
       	{
       		id: 1,
@@ -188,6 +189,7 @@ export default {
           obj.nationalCode = res.nationalCode // 收货地址国家码
 
           this.currentContact1 = obj
+          this.cardType1 = 'edit'
           alert(this.currentContact1.name)
           
         }
