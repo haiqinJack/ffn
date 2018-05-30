@@ -2,12 +2,12 @@
 	<div>
 		<myaddress 
 			:type="cardType"
-			:name="currentContact.name"
-			:tel="currentContact.tel"
-			:province="currentContact.province"
-			:city="currentContact.city"
-			:county="currentContact.county"
-			:address="currentContact.address_detail"
+			:name="currentContact1.name"
+			:tel="currentContact1.tel"
+			:province="currentContact1.province"
+			:city="currentContact1.city"
+			:county="currentContact1.county"
+			:address="currentContact1.address_detail"
 			@click="openaddress"
 		/>
 
@@ -135,6 +135,7 @@ export default {
       showList: false,
       showEdit: false,
       isEdit: false,
+      currentContact1: {},
       expressList:[
       	{
       		id: 1,
@@ -185,8 +186,9 @@ export default {
           obj.county = res.countryName // 国标收货地址第三级地址（国家）
           obj.address = res.detailInfo // 详细收货地址信息
           obj.nationalCode = res.nationalCode // 收货地址国家码
-          this.currentContact = obj
-          alert(this.currentContact.name)
+
+          this.currentContact1 = obj
+          alert(this.currentContact1.name)
           
         }
       })
