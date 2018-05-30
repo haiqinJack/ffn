@@ -187,7 +187,7 @@ export default {
           
         }
       })
-      this.currentContact = obj
+      this.list.push(obj)
       this.chosenAddressId = 1
     },
     async payHandle() {
