@@ -176,9 +176,6 @@ export default {
     async openaddress() {
       window.wx.openAddress({
         success: (res) => this.a(res)
-        // success: function (res) {
-
-        // }
       })
     },
     a(res) {
@@ -190,7 +187,7 @@ export default {
       obj.city = res.cityName // 国标收货地址第二级地址（市）
       obj.county = res.countryName // 国标收货地址第三级地址（国家）
       obj.address = res.detailInfo // 详细收货地址信息
-      this.cardType1 = 'edit'
+
       this.currentContact1 = obj
       this.cardType1 = 'edit'
     },
