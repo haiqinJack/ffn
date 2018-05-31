@@ -187,7 +187,7 @@ export default {
           }
         })
       this.cardType1 = 'edit'
-      this.currentContact1 = res
+      this.currentContact1 = obj
     },
     opendata(res) {
       alert(res,'?opendata')    
