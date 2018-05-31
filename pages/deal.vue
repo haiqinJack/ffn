@@ -192,7 +192,7 @@ export default {
     },
     a(res) {
       alert('??????')
-    }
+    },
     async payHandle() {
       const total = this.total
       const message = this.message
