@@ -41,6 +41,7 @@ export async function redirect(ctx, next) {
 export async function oauth(ctx, next) {
 	if(!ctx.session.user){
 		let url = ctx.query.url
+		console.log(url,'url')
 		if(url) {
 			url = decodeURIComponent(url)
 			const urlObj = urlParse(url)
