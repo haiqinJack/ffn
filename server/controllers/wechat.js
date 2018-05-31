@@ -28,8 +28,8 @@ export async function redirect(ctx, next) {
 	const { visit } = ctx.query
 	const params = `${visit}`
 	if(!ctx.session.user){
-		// const url = api.getAuthorizeURL(target, params, scope)
-		const url = api.getAuthorizeURL(target, params)
+		const url = api.getAuthorizeURL(target, params, scope)
+		// const url = api.getAuthorizeURL(target, params)
 		console.log(url,'url')
 		ctx.redirect(url)
 	}else {
@@ -48,6 +48,7 @@ export async function oauth(ctx, next) {
 			const params = queryParse(urlObj.query)
 			const code = params.code
 			const user = await api.getUserInfoByCode(code)
+			console.log(user,'user')
 			if(!user.errcode){
 				ctx.session.user = user
 				console.log(ctx.session.user,'session')	
