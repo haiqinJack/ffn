@@ -27,11 +27,9 @@ export async function redirect(ctx, next) {
 	const scope = 'snsapi_userinfo'
 	const { visit } = ctx.query
 	const params = `${visit}`
-	console.log(ctx.session.user,'redirect session')
 	if(!ctx.session.user || ctx.session.user.errcode){
 		const url = api.getAuthorizeURL(target, params, scope)
 		// const url = api.getAuthorizeURL(target, params)
-		console.log(url,'url')
 		ctx.redirect(url)
 	}else {
 		const url = config.SITE_ROOT_URL + '/oauth?' +'code=abc&state=' + visit
@@ -42,18 +40,14 @@ export async function redirect(ctx, next) {
 export async function oauth(ctx, next) {
 	if(!ctx.session.user){
 		let url = ctx.query.url
-		console.log(url,'url')
 		if(url) {
 			url = decodeURIComponent(url)
 			const urlObj = urlParse(url)
 			const params = queryParse(urlObj.query)
 			const code = params.code
 			const user = await api.getUserInfoByCode(code)
-			console.log(user,'user')
-			if(!user.errcode){
-				ctx.session.user = user
-				console.log(ctx.session.user,'session')	
-			}
+			ctx.session.user = user
+			
 			ctx.body = {
 				success: true,
 				data: user
