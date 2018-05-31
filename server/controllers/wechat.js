@@ -30,6 +30,7 @@ export async function redirect(ctx, next) {
 	if(!ctx.session.user){
 		// const url = api.getAuthorizeURL(target, params, scope)
 		const url = api.getAuthorizeURL(target, params)
+		console.log(url,'url')
 		ctx.redirect(url)
 	}else {
 		const url = config.SITE_ROOT_URL + '/oauth?' +'code=abc&state=' + visit
@@ -48,7 +49,7 @@ export async function oauth(ctx, next) {
 			const user = await api.getUserInfoByCode(code)
 
 			ctx.session.user = user
-
+			console.log(ctx.session.user,'session')
 			ctx.body = {
 				success: true,
 				data: user
