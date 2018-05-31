@@ -22,6 +22,7 @@ export default {
       if (data.success) {
         this.$store.dispatch('setUser', data.data)
         const visit = '/' + getUrlParam('state')
+        this.$store.state.iosUrl = url
         this.$router.replace(visit)
       } else {
         throw new Error('用户信息获取失败')

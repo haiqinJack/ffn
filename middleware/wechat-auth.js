@@ -4,5 +4,4 @@ export default function ({ store, route, redirect }) {
     fullPath = encodeURIComponent(fullPath.substr(1))
     return redirect(`/wechat-redirect?visit=${fullPath}`)
   }
-  console.log(store.state.user,'wechatMiddleware')
 }

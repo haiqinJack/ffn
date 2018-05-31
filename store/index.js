@@ -9,6 +9,7 @@ const createStore = () => new Vuex.Store({
   	user: {
        // unionid: 'o5z25w2rayBmb3ZbJdE_AjLQgVf8'
   	},
+    iosUrl: '',
   	goods: {},
   	cartList: [],
   	payment: [
