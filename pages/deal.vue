@@ -174,10 +174,24 @@ export default {
 
   methods: {
     async openaddress() {
-      const data = await getopenaddress()
-      alert(data,'Promise')
+      let obj = {}
+        window.wx.openAddress({
+          success: function (res) {
+            obj.name = res.userName// 收货人姓名
+            obj.tel = res.telNumber // 收货人手机号码
+            obj.postal_code = res.postalCode // 邮编
+            obj.province = res.provinceName // 国标收货地址第一级地址（省）
+            obj.city = res.cityName // 国标收货地址第二级地址（市）
+            obj.county = res.countryName // 国标收货地址第三级地址（国家）
+            obj.address = res.detailInfo // 详细收货地址信息
+            opendata(obj)
+          }
+        })
+    },
+    opendata(res) {
+      alert(res,'?opendata')    
       this.cardType1 = 'edit'
-      this.currentContact1 = data
+      this.currentContact1 = res
     },
     async payHandle() {
       const total = this.total
@@ -297,19 +311,7 @@ export default {
 }	
 function  getopenaddress() {
       new Promise((resolve, reject) => {
-        let obj = {}
-        window.wx.openAddress({
-          success: function (res) {
-            obj.name = res.userName// 收货人姓名
-            obj.tel = res.telNumber // 收货人手机号码
-            obj.postal_code = res.postalCode // 邮编
-            obj.province = res.provinceName // 国标收货地址第一级地址（省）
-            obj.city = res.cityName // 国标收货地址第二级地址（市）
-            obj.county = res.countryName // 国标收货地址第三级地址（国家）
-            obj.address = res.detailInfo // 详细收货地址信息
-            resolve(obj)
-          }
-        })
+
         
       })
     }
