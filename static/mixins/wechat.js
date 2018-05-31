@@ -1,7 +1,9 @@
 export default {
 	methods: {
 		async wechatInit(url) {
-			url = this.$store.state.iosUrl
+			if(window.__wxjs_is_wkwebview) {
+				url = this.$store.state.iosUrl
+			}
 			const res = await this.$store.dispatch('getWechatSignture', url)
 			const { data, success } = res.data
 
