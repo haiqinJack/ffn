@@ -187,7 +187,7 @@ export default {
         }
       })
       this.cardType1 = 'edit'
-      alert(obj)
+      alert(obj.name)
       this.currentContact1 = obj
     },
 
