@@ -27,7 +27,7 @@ export async function redirect(ctx, next) {
 	const scope = 'snsapi_userinfo'
 	const { visit } = ctx.query
 	const params = `${visit}`
-	if(!ctx.session.user){
+	if(!ctx.session.user || ctx.session.user.errcode){
 		const url = api.getAuthorizeURL(target, params, scope)
 		// const url = api.getAuthorizeURL(target, params)
 		console.log(url,'url')
