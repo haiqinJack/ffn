@@ -16,6 +16,7 @@ export default {
   },
   beforeMount () {
     const url = window.location.href
+    alert(url)
     this.$store.dispatch('getUserInfoByOAuth', url).then(res => {
       const { data } = res
       // console.log(data)
