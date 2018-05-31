@@ -15,21 +15,6 @@ const UserSchema = new Schema({
 	headimgurl: String, // 用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空。若用户更换头像，原有头像URL将失效。
 	privilege: [], // 用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
 	unionid: String,
-	address: [ // 收货地址
-		{
-			id: String,
-			name: String, // 收货人
-			tel: String, // 电话
-			province: String, // 省份
-			city: String, // 城市
-			county: String, // 区县
-			address_detail: String, // 详细地址
-			area_code: String, // 地区编码，通过省市区选择获取
-			postal_code: String,// 邮政编码
-			is_default: Boolean,// 是否为默认地址
-			address: String // province + city + county + address_detail
-		}
-	],
 	meta: {
 		createAt: {
 			type: Date,

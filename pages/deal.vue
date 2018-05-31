@@ -1,13 +1,13 @@
 <template>
 	<div>
 		<myaddress 
-			:type="cardType1"
-			:name="currentContact1.name"
-			:tel="currentContact1.tel"
-			:province="currentContact1.province"
-			:city="currentContact1.city"
-			:county="currentContact1.county"
-			:address="currentContact1.address"
+			:type="cardType"
+			:name="currentContact.name"
+			:tel="currentContact.tel"
+			:province="currentContact.province"
+			:city="currentContact.city"
+			:county="currentContact.county"
+			:address="currentContact.detailInfo"
 			@click="openaddress"
 		/>
 
@@ -71,31 +71,7 @@
 			  button-text="提交订单"
 			  @submit="payHandle"
 			/>
-			
 		</template>
-
-		<!-- 联系人列表 -->
-		<van-popup v-model="showList" position="bottom">
-			<van-address-list
-			  v-model="chosenAddressId"
-			  :list="list"
-			  @add="onAdd"
-			  @edit="onEdit"
-			  @select="onSelect"
-			/>
-		</van-popup>
-
-		<!-- 联系人编辑 -->
-		<van-popup v-model="showEdit" position="bottom">
-			<van-address-edit
-			  :area-list="areaList"
-			  show-delete
-			  show-set-default
-			  :address-info="addressInfo"
-			  @save="onSave"
-			  @delete="onDelete"
-			/>
-		</van-popup>	
   </div>
 </template>
 <script>
@@ -104,8 +80,6 @@ import {
   Toast, 
   Area,
   Popup, 
-  AddressEdit, 
-  AddressList, 
   SubmitBar, 
   Cell, 
   CellGroup, 
@@ -127,16 +101,10 @@ export default {
   data() {
     return {
     	message: '',
-    	areaList: areaList,
-      chosenAddressId: null, 
-      addressInfo:{},
     	showExpressList: false,
     	loading: false,
-      showList: false,
-      showEdit: false,
-      cardType1: 'add',
-      currentContact1: {},
-      isEdit: false,
+      cardType: 'add',
+      currentContact: {},
       expressList:[
       	{
       		id: 1,
@@ -150,16 +118,8 @@ export default {
 
   computed: {
     ...mapState({
-      'cartList': 'payment',
-      'list': 'address'
+      'cartList': 'payment'
     }),
-    cardType() {
-      return this.chosenAddressId !== null ? 'edit' : 'add';
-    },
-    currentContact() {
-      let id = this.chosenAddressId;
-      return id !== null ? this.list.filter(item => item.id === id)[0] : {}
-    },
     currentExpress() {
       return this.expressList.filter(item => item.id === 1)[0]
     },
@@ -186,10 +146,10 @@ export default {
       obj.province = res.provinceName // 国标收货地址第一级地址（省）
       obj.city = res.cityName // 国标收货地址第二级地址（市）
       obj.county = res.countryName // 国标收货地址第三级地址（国家）
-      obj.address = res.detailInfo // 详细收货地址信息
-
-      this.currentContact1 = obj
-      this.cardType1 = 'edit'
+      obj.detailInfo = res.detailInfo // 详细收货地址信息
+      obj.address = res.provinceName + res.cityName + res.countryName + res.detailInfo
+      this.currentContact = obj
+      this.cardType = 'edit'
     },
     async payHandle() {
       const total = this.total
@@ -231,49 +191,7 @@ export default {
       // });
 
     },    
-    // 添加联系人
-    onAdd() {
-      this.editingContact = { id: this.list.length };
-      this.isEdit = false;
-      this.showEdit = true;
-    },
 
-    // 编辑联系人
-    onEdit(item) {
-      this.isEdit = true;      
-      this.showEdit = true;
-      this.addressInfo = item
-    },
-
-    // 选中联系人
-    onSelect(item) {
-      this.showList = false;
-      this.chosenAddressId = item.id;
-    },
-
-    // 保存联系人
-    onSave(info) {
-      this.showEdit = false;
-      this.showList = false;
-      
-      if (this.isEdit) {
-        this.list = this.list.map(item => item.id === info.id ? info : item);
-      } else {
-        this.list.push(formatAddress(info));
-      }
-      this.chosenAddressId = info.id;
-      const data = this.$store.dispatch('saveUserAddress', info)
-      console.log(data)
-    },
-
-    // 删除联系人
-    onDelete(info) {
-      this.showEdit = false;
-      this.list = this.list.filter(item => item.id !== info.id);
-      if (this.chosenAddressId === info.id) {
-        this.chosenAddressId = null;
-      }
-    },
     OnExpress(item, index) {
     	this.showExpressList = false
     },
@@ -286,8 +204,6 @@ export default {
     [Field.name]: Field,
     [Toast.name]: Toast, 
     [Popup.name]: Popup, 
-    [AddressEdit.name]: AddressEdit, 
-    [AddressList.name]: AddressList, 
     [SubmitBar.name]: SubmitBar,
     [Cell.name]: Cell, 
     [Area.name]: Area,
@@ -295,9 +211,6 @@ export default {
     [Card.name]: Card,
   	[myaddress.name]: myaddress,
   	[myexpress.name]: myexpress
-  },
-  beforeCreate() {
-    this.$store.dispatch('fetchUserAddress')
   },
   async beforeMount() {
     this.expressList[0].price = getPrice(this.cartList, 'express')
@@ -307,22 +220,7 @@ export default {
 
   }
 }	
-function  getopenaddress() {
-      new Promise((resolve, reject) => {
 
-        
-      })
-    }
-function chosenAddressIsDefault(list) {
-	let id = null
-	list.forEach(item => item.is_default === true ? id = item.id : null) 
-	return id
-}
-
-function formatAddress(info) {
-	info.address = info.province + info.city + info.county + info.address_detail
-	return info
-}
 
 function getPrice(list, express) {
   let price = 0

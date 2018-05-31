@@ -103,10 +103,6 @@ export async function pay(ctx, next) {
 	}
 }
 
-export function notify () {
-	return wechatPay.notifyMiddleware()
-}
-
 export async function createMenu(ctx, next) {
 	console.log(menu)
 	const data = await api.createMenu(menu)

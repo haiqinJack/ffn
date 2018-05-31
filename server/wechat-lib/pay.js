@@ -28,25 +28,3 @@ export const getBrandWCPayRequestParams = (order) =>{
 		})
 	})
 }
-
-export const notifyMiddleware = () => {
-	return middleware.getNotify().done(function(message, req, res, next) {
-	  var openid = message.openid;
-	  var order_id = message.out_trade_no;
-	  var attach = {};
-	  try{
-	   attach = JSON.parse(message.attach);
-	  }catch(e){}
-	 
-	  /**
-	   * 查询订单，在自己系统里把订单标为已处理
-	   * 如果订单之前已经处理过了直接返回成功
-	   */
-	  res.reply('success');
-	 
-	  /**
-	   * 有错误返回错误，不然微信会在一段时间里以一定频次请求你
-	   * res.reply(new Error('...'))
-	   */
-	})
-}

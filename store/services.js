@@ -32,12 +32,6 @@ class Services {
 	fetchCartList(id) {
 		return axios.get(`${baseUrl}/cart/${id}`)
 	}	
-	fetchUserAddress(unionid) {
-		return axios.get(`${baseUrl}/u/address/${unionid}`)
-	}
-	saveUserAddress(unionid, address) {
-		return axios.post(`${baseUrl}/u/address/create`, {unionid, address})
-	}
 }
 
 export default new Services()

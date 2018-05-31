@@ -22,11 +22,6 @@ import {
 	fetchOrderByUnionid
 } from './order'
 
-import {
-	getUserAddressByOpenId,
-	PushOneUserAddress
-} from './user'
-
 export {
 	getGoods,
 	getGoodsOneById,
@@ -39,6 +34,4 @@ export {
 	saveCart,
 	createOrder,
 	fetchOrderByUnionid,
-	getUserAddressByOpenId,
-	PushOneUserAddress
 }
