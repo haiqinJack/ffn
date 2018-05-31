@@ -1,7 +1,6 @@
 export default {
 	methods: {
 		async wechatInit(url) {
-			url = 'https://www.fafuna.cn/'
 			const res = await this.$store.dispatch('getWechatSignture', url)
 			const { data, success } = res.data
 

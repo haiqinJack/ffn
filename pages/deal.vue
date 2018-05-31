@@ -215,7 +215,7 @@ export default {
   async beforeMount() {
     this.expressList[0].price = getPrice(this.cartList, 'express')
 
-    const url = window.location.href
+    const url = window.location.href.split('#')[0]
     await this.wechatInit(url)
 
   }
