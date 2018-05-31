@@ -48,9 +48,10 @@ export async function oauth(ctx, next) {
 			const params = queryParse(urlObj.query)
 			const code = params.code
 			const user = await api.getUserInfoByCode(code)
-
-			ctx.session.user = user
-			console.log(ctx.session.user,'session')
+			if(!user.errcode){
+				ctx.session.user = user
+				console.log(ctx.session.user,'session')	
+			}
 			ctx.body = {
 				success: true,
 				data: user
