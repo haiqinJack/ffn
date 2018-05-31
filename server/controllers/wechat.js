@@ -14,6 +14,7 @@ export async function signature(ctx, next) {
 
 	url = decodeURIComponent(url)
 	console.log(url,'url')
+	
 	const data = await api.getSignatureAsync(url)
 	console.log(data,'data')
 	ctx.body = {
