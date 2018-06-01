@@ -14,7 +14,13 @@ export async function createOrder(order) {
 	return order
 }
 
-export async function fetchOrderByUnionid(unionid) {
-	const data  = await Order.find({unionid}).sort('-id').exec()
+
+export async function fetchOrderByUnionid(unionid, status) {
+	let data = null
+	if(status == 0) {
+		data  = await Order.find({unionid}, 'out_trade_no goods status').sort('-_id').exec()
+	}else {
+		data = await Order.find({unionid, status}).sort('-_id').exec()
+	}
 	return data
 }

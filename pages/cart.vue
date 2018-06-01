@@ -70,7 +70,7 @@
   </div>
   <div v-else class="Zero">
     <h3>购物车空空如也～</h3>
-    <van-button tag="a" @click="gotoShoping">
+    <van-button @click="gotoShoping">
       去逛逛
     </van-button>
   </div>

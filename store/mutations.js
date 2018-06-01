@@ -22,6 +22,28 @@ export default {
   },
   SET_SKUBOX(state, obj) {
     state.skuBox.push(obj)
+  },
+  SET_ORDER(state, order) {
+    order.forEach((item, index) => {
+      switch(item.status) {
+        //2-待发货, 3-已发货, 5-已完成, 8-维权中
+        case 2:
+        order[index].status = '待发货'
+        break;
+        case 3:
+        order[index].status = '已发货'
+        break;
+        case 5:
+        order[index].status = '已完成'
+        break;        
+        case 8:
+        order[index].status = '维权中'
+        break;
+        default:
+        order[index].status = '待发货'
+      }
+    })    
+    state.order = order
   }
 }
 

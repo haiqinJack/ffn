@@ -25,12 +25,21 @@ const OrderSchema = new Schema({
 	message: String, // 留言
 	success: { // 支付成功?
 		type: Boolean,
-		default: false
+		default: false // false 未支付， true 已支付
+	},
+	status: { // 订单状态
+		type: Number,
+		default: 2,
+		enum: [2, 3, 5, 8] //2-待发货, 3-已发货, 5-已完成, 8-维权中
 	},
 	payType: { // 支付类型
 		type: String,
 		enum: ['JSAPI', 'NATIVE', 'APP'],
 		default: 'JSAPI'
+	},
+	delivery: {
+		company: String, // 物流公司
+		track_no: String // 运单ID
 	},
 	meta: {
 		createAt: {

@@ -32,6 +32,9 @@ class Services {
 	fetchCartList(id) {
 		return axios.get(`${baseUrl}/cart/${id}`)
 	}	
+	fetchOrder(unionid, status) {
+		return axios.get(`${baseUrl}/u/order/${unionid}/${status}`)
+	}
 }
 
 export default new Services()

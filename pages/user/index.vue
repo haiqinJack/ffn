@@ -3,12 +3,8 @@
     <img class="user-poster" src="https://img.yzcdn.cn/public_files/2017/10/23/8690bb321356070e0b8c4404d087f8fd.png">
     <van-row class="user-links">
       <van-col span="6">
-        <van-icon name="pending-payment" />
+        <van-icon name="pending-payment"  @click="aa"/>
         待付款
-      </van-col>
-      <van-col span="6">
-        <van-icon name="pending-orders" />
-        待接单
       </van-col>
       <van-col span="6">
         <van-icon name="pending-deliver" />
@@ -16,12 +12,24 @@
       </van-col>
       <van-col span="6">
         <van-icon name="logistics" />
-        待发货
+        已发货
+      </van-col>
+      <van-col span="6">
+        <van-icon name="completed" />
+        已完成
       </van-col>
     </van-row>
 
     <van-cell-group class="user-group">
-      <van-cell icon="records" title="全部订单" is-link />
+      <nuxt-link to="/order?status=0">
+        <van-cell icon="records" title="全部订单" is-link />
+      </nuxt-link>
+    </van-cell-group>
+
+    <van-cell-group>
+      <nuxt-link to="/cart">
+        <van-cell icon="cart" title="我的购物车" is-link />
+      </nuxt-link>
     </van-cell-group>
 
     <van-cell-group>
@@ -38,6 +46,16 @@ import { Row, Col, Icon, Cell, CellGroup } from 'vant';
 import FooterAction from '~/components/footer-action.vue'
 
 export default {
+  head() {
+    return {
+      title: '个人中心'
+    }
+  },
+  methods: {
+    aa() {
+      alert('??')
+    }
+  },
   components: {
     [Row.name]: Row,
     [Col.name]: Col,

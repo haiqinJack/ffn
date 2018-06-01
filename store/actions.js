@@ -51,5 +51,10 @@ export default {
   async createOrder({ state }, { total, message, contact, products}) {
     const res = await Services.createOrder(state.user.unionid, total, message, contact, products)
     return res
+  },
+  async fetchOrder({ commit, state }, status) {
+    const res = await Services.fetchOrder(state.user.unionid, status)
+    commit('SET_ORDER', res.data.data)
+    return res
   }
 }
