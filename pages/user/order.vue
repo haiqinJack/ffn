@@ -35,6 +35,12 @@ import { mapState } from 'vuex'
 import { Panel, Card} from 'vant'
 
 export default {
+	middleware: 'wechat-auth',
+	head(){
+		return {
+			title: '我的订单'
+		}
+	},
 	data() {
 		return {
 			// order: [

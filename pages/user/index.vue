@@ -54,6 +54,7 @@ import { Row, Col, Icon, Cell, CellGroup, Toast } from 'vant';
 import FooterAction from '~/components/footer-action.vue'
 
 export default {
+  middleware: 'wechat-auth',
   head() {
     return {
       title: '个人中心'
