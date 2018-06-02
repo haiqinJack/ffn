@@ -133,7 +133,7 @@ export default {
   },
 
   methods: {
-    async openaddress() {
+    openaddress() {
       window.wx.openAddress({
         success: (res) => this.a(res)
       })
@@ -150,6 +150,15 @@ export default {
       obj.address = res.provinceName + res.cityName + res.countryName + res.detailInfo
       this.currentContact = obj
       this.cardType = 'edit'
+    },
+    b(res) {
+        // 支付成功后的回调函数
+      try {
+        window.WeixinJSBridge.log(res.err_msg)
+        this.$router.push({ path: '/user/order' })
+      } catch(e) {
+        console.error(e)
+      }
     },
     async payHandle() {
       const total = this.total
@@ -170,14 +179,7 @@ export default {
         package: data.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
         signType: data.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
         paySign: data.paySign, // 支付签名
-        success: (res) => {
-        // 支付成功后的回调函数
-          try {
-            window.WeixinJSBridge.log(res.err_msg)
-          } catch(e) {
-            console.error(e)
-          }
-        }        
+        success: (res) => this.b(res)        
       })
       // this.loading = true
 
