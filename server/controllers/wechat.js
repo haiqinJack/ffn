@@ -5,7 +5,6 @@ import config from '../config'
 import * as wechatPay from '../wechat-lib/pay'
 import menu from '../config/menu.js'
 import getClintIp from 'ipware'
-import { openidAndSessionKey } from '../wechat/mini'
 
 const get_ip = getClintIp().get_ip
 
@@ -107,9 +106,7 @@ export async function pay2(ctx, next) {
 	let ip = ipInfo.clientIp
 	ip = ip.replace('::ffff:', '')
 
-	const { code, total, message, contact, products } = ctx.request.body
-
-	const {unionid, openid } = await openidAndSessionKey(code)
+	const { total, message, contact, products, unionid, openid } = ctx.request.body
 
 	let out_trade_no = ('ffn' + Date.now())
 	const orderParams = {
