@@ -5,6 +5,7 @@ import config from '../config'
 import * as wechatPay from '../wechat-lib/pay'
 import menu from '../config/menu.js'
 import getClintIp from 'ipware'
+import { openidAndSessionKey, WXBizDataCrypt } from '../wechat/mini'
 
 const get_ip = getClintIp().get_ip
 
@@ -100,7 +101,51 @@ export async function pay(ctx, next) {
 		data: payargs
 	}
 }
+//小程序支付
+export async function pay2(ctx, next) {
+	const ipInfo = get_ip(ctx.request.req)
+	let ip = ipInfo.clientIp
+	ip = ip.replace('::ffff:', '')
 
+	//const { unionid, total, message, contact, products } = ctx.request.body
+	const { code, userInfo, total } = ctx.request.body
+	// 获取openid, unionid，
+	const {session_key, openid, unionid} = await openidAndSessionKey(code)
+	// 获取用户详细信息.
+	const pc = new WXBizDataCrypt(session_key)
+	const decryptData = pc.decryptData(userInfo.encryptedData, userInfo.iv)
+	
+	let out_trade_no = ('ffn' + Date.now())
+	const orderParams = {
+	  body:'法弗纳商城-智能设备',
+	  attach: '法弗纳商城-智能设备',
+	  out_trade_no: out_trade_no,
+	  total_fee: total,
+	  spbill_create_ip: ip,
+	  openid: openid,
+	  trade_type: 'JSAPI'
+	}
+
+	const payargs = await wechatPay.getBrandWCPayRequestParams2(orderParams)
+
+	// let order = {
+	// 	unionid,
+	// 	openid: openid,
+	// 	totalFee: total, 
+	// 	message, 
+	// 	address: contact, 
+	// 	goods: products,
+	// 	out_trade_no,
+	// 	paySign: payargs.paySign,
+	// }
+
+	// const data = await api.createOrder(order)
+
+	ctx.body= {
+		success: true,
+		data: payargs
+	}
+}
 export async function createMenu(ctx, next) {
 	console.log(menu)
 	await api.deleteMenu()

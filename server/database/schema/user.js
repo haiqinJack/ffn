@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 const UserSchema = new Schema({
-	openid: String,
+	openid: [String],
 	nickname: String, // 用户昵称
 	sex: {// 用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
 		type: String,

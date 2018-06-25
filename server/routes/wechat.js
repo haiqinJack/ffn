@@ -46,4 +46,5 @@ export class WechatController{
 	async createMenu(ctx, next) {
 		await createMenu(ctx, next)
 	}
+
 }
