@@ -31,3 +31,9 @@ export async function createMenu(menu) {
 	
 	return data
 }
+
+export async function deleteMenu(menu) {
+	const data = await client.handle('deleteMenu')
+	
+	return data
+}

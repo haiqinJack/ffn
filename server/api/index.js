@@ -2,7 +2,8 @@ import {
 	getSignatureAsync,
 	getAuthorizeURL,
 	getUserInfoByCode,
-	createMenu
+	createMenu,
+	deleteMenu
 } from './wechat'
 
 import{
