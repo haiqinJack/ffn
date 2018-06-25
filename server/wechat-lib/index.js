@@ -22,7 +22,8 @@ const api = {
 		getUserTagList: base + 'tags/getidlist?'
 	},
 	menu: {
-		create: base + 'menu/create?'
+		create: base + 'menu/create?',
+		delete: base + 'menu/delete?'
 	}
 }
 
@@ -35,6 +36,12 @@ export default class Wechat {
 		this.saveAccessToken = opts.saveAccessToken	
 		this.getTicket = opts.getTicket
 		this.saveTicket = opts.saveTicket
+	}
+
+	deleteMenu(token) {
+		const url = `${api.menu.delete}access_token=${token}`
+
+		return {url}
 	}
 
 	createMenu(token, menu) {

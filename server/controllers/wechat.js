@@ -103,6 +103,7 @@ export async function pay(ctx, next) {
 
 export async function createMenu(ctx, next) {
 	console.log(menu)
+	await api.deleteMenu()
 	const data = await api.createMenu(menu)
 
 	ctx.status= 200
