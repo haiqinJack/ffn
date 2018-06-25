@@ -107,13 +107,7 @@ export async function pay2(ctx, next) {
 	let ip = ipInfo.clientIp
 	ip = ip.replace('::ffff:', '')
 
-	//const { unionid, total, message, contact, products } = ctx.request.body
-	const { code, userInfo, total } = ctx.request.body
-	// 获取openid, unionid，
-	const {session_key, openid, unionid} = await openidAndSessionKey(code)
-	// 获取用户详细信息.
-	const pc = new WXBizDataCrypt(session_key)
-	const decryptData = pc.decryptData(userInfo.encryptedData, userInfo.iv)
+	const { code, total, message, contact, products } = ctx.request.body
 	
 	let out_trade_no = ('ffn' + Date.now())
 	const orderParams = {
@@ -128,18 +122,18 @@ export async function pay2(ctx, next) {
 
 	const payargs = await wechatPay.getBrandWCPayRequestParams2(orderParams)
 
-	// let order = {
-	// 	unionid,
-	// 	openid: openid,
-	// 	totalFee: total, 
-	// 	message, 
-	// 	address: contact, 
-	// 	goods: products,
-	// 	out_trade_no,
-	// 	paySign: payargs.paySign,
-	// }
+	let order = {
+		unionid,
+		openid: openid,
+		totalFee: total, 
+		message, 
+		address: contact, 
+		goods: products,
+		out_trade_no,
+		paySign: payargs.paySign,
+	}
 
-	// const data = await api.createOrder(order)
+	const data = await api.createOrder(order)
 
 	ctx.body= {
 		success: true,
