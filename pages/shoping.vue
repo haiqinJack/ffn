@@ -140,7 +140,7 @@ export default {
       cart.picture = this.goods.picture
       cart.desc = this.formarSpec(data.selectedSkuComb)
       return cart
-    }
+    },
     formatExpressPrice() {
       let price = this.goods.expressPrice
       return price ? '¥' + (price / 100).toFixed(2) : '免运费'
