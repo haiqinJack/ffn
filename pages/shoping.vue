@@ -114,14 +114,7 @@ export default {
       Toast('升级维护中~');
     },
     onAddCart(data){
-      let cart = {}
-      cart.id = this.goods.id
-      cart.title = this.goods.title
-      cart.price = data.selectedSkuComb.price
-      cart.num = data.selectedNum
-      cart.expressPrice = this.goods.expressPrice
-      cart.picture = this.goods.picture
-      cart.desc = this.formarSpec(data.selectedSkuComb)
+      let cart = this.getGoods(data)
       //插入一条数据到后台，更新store数据
       this.$store.dispatch('saveCart', cart).then(res => {
         if(res.status === 200 && res.data.success) {
@@ -133,17 +126,21 @@ export default {
       })
     },
     onBuyClicked(data) {
+      let cart = this.getGoods(data)
+      this.$store.commit('SET_PAYMENT', [cart])
+      this.$router.push('deal');
+    },
+    getGoods(data) {
       let cart = {}
-      cart.id = data.id
+      cart.id = this.goods.id
       cart.title = this.goods.title
       cart.price = data.selectedSkuComb.price
-      cart.number = data.selectedNum
+      cart.num = data.selectedNum
       cart.expressPrice = this.goods.expressPrice
       cart.picture = this.goods.picture
       cart.desc = this.formarSpec(data.selectedSkuComb)
-      console.log(data)
-      console.log(cart)
-    },
+      return cart
+    }
     formatExpressPrice() {
       let price = this.goods.expressPrice
       return price ? '¥' + (price / 100).toFixed(2) : '免运费'
