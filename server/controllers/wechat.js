@@ -126,7 +126,7 @@ export async function pay2(ctx, next) {
 	  trade_type: 'JSAPI'
 	}
 
-	const payargs = await wechatPay.getBrandWCPayRequestParams2(orderParams)
+	const payargs = await wechatPay.getBrandWCPayRequestParams(orderParams)
 
 	// let order = {
 	// 	unionid,
