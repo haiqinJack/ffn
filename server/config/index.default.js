@@ -11,6 +11,10 @@ export default{
 		mchId: '',
 		notifyUrl: ''
 	},
+	wechatMini: {
+		appID: '',
+		appSecret: ''
+	},	
   qiniu: {
     AK: '',
     SK: '',
