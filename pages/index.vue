@@ -10,6 +10,11 @@
   </section>
 </template>
 
+<script>
+export default {
+  layout: 'home'
+}
+</script>
 <style scoped>
 .title
 {
