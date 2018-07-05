@@ -33,3 +33,12 @@ export async function getGoodsByIdForSKU(id) {
 	return data
 }
 
+/**
+ * 查找商品
+ * @param { Array } arr 查找条件
+ */
+export async function findsGoods(arr) {
+	const data = await Goods.find({_id: {$in: arr}}).exec()
+
+	return data
+}

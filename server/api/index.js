@@ -10,6 +10,7 @@ import{
 	getGoods,
 	getGoodsOneById,
 	getGoodsByIdForSKU,
+	findsGoods
 	
 } from './goods'
 
@@ -23,10 +24,16 @@ import {
 	fetchOrderByUnionid
 } from './order'
 
+import {
+	findOneGroup,
+	findGroup
+} from './group'
+
 export {
 	getGoods,
 	getGoodsOneById,
 	getGoodsByIdForSKU,
+	findsGoods,
 	createMenu,
 	getSignatureAsync,
 	getAuthorizeURL,
@@ -35,5 +42,7 @@ export {
 	saveCart,
 	createOrder,
 	fetchOrderByUnionid,
-	deleteMenu
+	deleteMenu,
+	findOneGroup,
+	findGroup	
 }
