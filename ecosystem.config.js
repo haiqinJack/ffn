@@ -14,11 +14,14 @@ module.exports = {
     production : {
       user : 'root',
       host : '111.230.201.47',
-      ssh_options: "StrictHostKeyChecking=no",
       ref  : 'origin/master',
       repo : 'git@github.com:haiqinJack/ffn.git',
       path : '/home/ffn/production',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
+      ssh_options: "StrictHostKeyChecking=no",
+      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production',
+      env: {
+        NODE_ENV: 'production'
+      }      
     }
   }
 };
