@@ -7,11 +7,10 @@ import {
 } from './wechat'
 
 import{
-	getGoods,
+	getGoodsCard,
 	getGoodsOneById,
 	getGoodsByIdForSKU,
 	findsGoods
-	
 } from './goods'
 
 import {
@@ -30,7 +29,7 @@ import {
 } from './group'
 
 export {
-	getGoods,
+	getGoodsCard,
 	getGoodsOneById,
 	getGoodsByIdForSKU,
 	findsGoods,

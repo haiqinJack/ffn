@@ -7,33 +7,56 @@ import * as api from '../api'
 export class GoodsController{
 	@get('/all')
 	async fetchGoodsCard(ctx, next) {
-		const data = await api.getGoodsCard()
-
-		ctx.body = {
-			success: true,
-			data: data
+		try {
+			const data = await api.getGoodsCard()
+			ctx.body = {
+				success: true,
+				data: data
+			}
+		}catch(e) {
+			console.error(e)
+			ctx.body = {
+				success: false,
+				data: []
+			}
 		}
+
 	}
 
 	@get('/:id')
 	async fetchGoodsOne(ctx, next) {
 		let { id } = ctx.params
-		const data = await api.getGoodsOneById(id)
-
-		ctx.body = {
-			success: true,
-			data: data
+		try {
+			const data = await api.getGoodsOneById(id)
+			ctx.body = {
+				success: true,
+				data: data
+			}
+		}catch(e) {
+			console.error(e)
+			ctx.body = {
+				success: false,
+				data: []
+			}
 		}
+
 	}
 
 	@get('/sku/:id')
 	async fetchSKUById(ctx, next) {
 		let { id } = ctx.params
-		const data = await api.getGoodsByIdForSKU(id)
+		try {
+			const data = await api.getGoodsByIdForSKU(id)
 
-		ctx.body = {
-			success: true,
-			data: data
+			ctx.body = {
+				success: true,
+				data: data
+			}
+		}catch(e) {
+			ctx.body = {
+				success: false,
+				data: []
+			}
 		}
 	}
 
