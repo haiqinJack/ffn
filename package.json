@@ -26,7 +26,7 @@
     "lodash": "^4.17.5",
     "mongoose": "^5.0.11",
     "node-sass": "^4.9.2",
-    "nuxt": "latest",
+    "nuxt": "^1.4.2",
     "path": "^0.12.7",
     "ramda": "^0.25.0",
     "raw-body": "^2.3.2",
@@ -41,7 +41,7 @@
     "xml2js": "^0.4.19",
     "xss": "^0.3.8",
     "less": "^3.0.1",
-    "less-loader": "^4.1.0"    
+    "less-loader": "^4.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -61,8 +61,6 @@
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
-
-    "nodemon": "^1.11.0",
     "pug": "^2.0.3",
     "scmp": "^2.0.0"
   }
