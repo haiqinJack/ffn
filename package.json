@@ -39,7 +39,9 @@
     "vant": "^1.0.5",
     "wechat-pay": "^0.3.2",
     "xml2js": "^0.4.19",
-    "xss": "^0.3.8"
+    "xss": "^0.3.8",
+    "less": "^3.0.1",
+    "less-loader": "^4.1.0"    
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -59,8 +61,7 @@
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
-    "less": "^3.0.1",
-    "less-loader": "^4.1.0",
+
     "nodemon": "^1.11.0",
     "pug": "^2.0.3",
     "scmp": "^2.0.0"

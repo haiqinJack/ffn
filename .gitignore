@@ -14,9 +14,6 @@ dist
 # System file
 .DS_Store
 
-# build
-build
-
 server/config/index.js
 
 # 微信支付证书文件
