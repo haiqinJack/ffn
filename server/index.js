@@ -8,7 +8,7 @@ import xml from 'koa-xml'
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
-config.dev = !(process.env === 'production')
+config.dev = !(process.env.NODE_ENV === 'production')
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 const MIDDLEWARES = ['database', 'common', 'router'];
@@ -35,11 +35,18 @@ class Server {
     // Instantiate nuxt.js
     const nuxt = new Nuxt(config)
 
-    // Build in development
+    // 在开发模式下启用编译构建和热加载
     if (config.dev) {
-      const builder = new Builder(nuxt)
-      await builder.build()
+        const builder = new Builder(nuxt)
+        await builder.build()
     }
+
+    // this.app.use((ctx) => {
+    //   ctx.status = 200
+    //   ctx.respond = false // Mark request as handled for Koa
+    //   ctx.req.ctx = ctx // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
+    //   nuxt.render(ctx.req, ctx.res)
+    // })
 
     this.app.use(async (ctx, next) => {
       await next()
@@ -52,8 +59,7 @@ class Server {
           promise.then(resolve).catch(reject)
         })
       })
-    })
-    
+    })    
     this.app.listen(port, host)
     console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console    
   }

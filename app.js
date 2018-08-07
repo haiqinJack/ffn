@@ -12,8 +12,8 @@ require('babel-core/register')({
 		'transform-decorators-legacy',
 		[
 			'module-alias', [
-				{src: r('./server'), 'expose': '~'},
-				{src: r('./server/database'), 'expose': 'database'}
+				{'src': r('./server'), 'expose': '~'},
+				{'src': r('./server/database'), 'expose': 'database'}
 			]
 		]
 	]
