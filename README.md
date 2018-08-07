@@ -25,3 +25,12 @@ using a prerelease version of Node (i.e. v7.6.0-rc.1) you will need to either:
   2. Run `yarn` with a standard release of Node and then switch back
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+
+##### 查看服务当前状态
+`systemctl status nginx.service`
+##### 启动nginx服务
+`systemctl start nginx.service`
+##### 设置开机自启动
+`systemctl disable nginx.service`
+##### 停止开机自启动
+`systemctl enable nginx.service`
