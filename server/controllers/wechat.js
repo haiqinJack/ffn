@@ -142,7 +142,7 @@ export async function pay2(ctx, next) {
 export async function createMenu(ctx, next) {
 	await api.deleteMenu()
 	const data = await api.createMenu(menu)
-
+	console.log(menu)
 	ctx.status= 200
 	ctx.body = {
 		success: true,
