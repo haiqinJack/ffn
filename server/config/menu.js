@@ -7,7 +7,7 @@ export default {
 			name: '商城首页',
 			url: config.SITE_ROOT_URL + '/allgoods',
 			appid: config.wechatMini.appID,
-			pagepath: '/pages/index'
+			pagepath: 'pages/index'
 		}
 	]
 }
